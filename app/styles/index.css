@@ -1,0 +1,18 @@
+:root {
+  --dark-mode-bg: #121212;
+  --jet: #222222;
+  --green: #32e875;
+  --green-bg: #32e87549;
+  --white: #ffffff;
+  /* --purple: #53599a; */
+  --purple: #a11692;
+  --orange: #f58a07;
+  --pink: #ec368d;
+  --pink-bg: #ec368e54;
+}
+
+body {
+  color: hsl(0, 0%, 100%);
+  background-color: var(--dark-mode-bg);
+  width: 100%;
+}
