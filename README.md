@@ -1,53 +1,42 @@
-# Welcome to Remix!
+<p align="center">
+  <a href="https://sapientia.dev">
+    <img alt="Sapientia" height="140" src="https://raw.githubusercontent.com/reillyjodonnell/sapientia/master/public/sapientia-logo.png">
+  </a>
+  <h2 align="center">
+    <a href="https://sapientia.dev">
+    sapientia.dev
+      <a>
+</h2>
+  <p align="center">Shared knowledge
+from the top minds in the programming industry
+- all for free!<p>
+  
+  <br>
+  <br>
+ 
+</p>
+<p align="center">
+  <b>Sapientia</b> is an open source accumulation of the top free learning content categorized by topics and skill level.<br> Built with <a href="https://github.com/remix-run/remix">Remix</a> and <a href="https://github.com/tailwindlabs/tailwindcss">tailwindcss</a> & inspired by the giants whose shoulders we stand on today <br> and all of the people who contribute and create open source projects ❤️
+</p>
 
-- [Remix Docs](https://remix.run/docs)
+## ⚡️ Quickstart
 
-## Development
+## ⚙️ Installation
 
-From your terminal:
+## 🎯 Features
 
-```sh
-npm run dev
-```
+## 💡 Why did we make this project?
 
-This starts your app in development mode, rebuilding assets on file changes.
+## 👀 What we've been eyeing this week 
 
-## Deployment
+## 👍 Contribute
 
-First, build your app for production:
+## ☕ Supporters
 
-```sh
-npm run build
-```
+## ‎‍💻 Code Contributors
 
-Then run the app in production mode:
+## ⭐️ Stargazers
 
-```sh
-npm start
-```
+## ⚠️ License
 
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
-
-### Using a Template
-
-When you ran `npx create-remix@latest` there were a few choices for hosting. You can run that again to create a new project, then copy over your `app/` folder to the new project that's pre-configured for your target server.
-
-```sh
-cd ..
-# create a new project, and pick a pre-configured host
-npx create-remix@latest
-cd my-new-remix-app
-# remove the new project's app (not the old one!)
-rm -rf app
-# copy your app over
-cp -R ../my-old-remix-app/app app
-```
+`Sapientia` is free and open-source software licensed under the [MIT License](https://github.com/gofiber/fiber/blob/master/LICENSE).
