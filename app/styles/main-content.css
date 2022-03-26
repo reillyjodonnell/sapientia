@@ -1,0 +1,9 @@
+.main-content {
+  background-color: #121212;
+  /* opacity: 0.4; */
+  background-image: radial-gradient(#ec368e7a 0.55px, transparent 0.55px),
+    radial-gradient(#ec368e71 0.55px, #121212 0.55px);
+
+  background-size: 24px 24px;
+  background-position: 0 0, 11px 11px;
+}

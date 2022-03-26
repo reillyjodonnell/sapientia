@@ -1,14 +1,25 @@
 :root {
+  --primary-text: var(--white);
+  --bg: var(--dark-mode-bg);
+
   --dark-mode-bg: #121212;
   --jet: #222222;
-  --green: #32e875;
-  --green-bg: #32e87549;
+  /* --green: #32e875;
+  --green-bg: #32e87549; */
   --white: #ffffff;
   /* --purple: #53599a; */
   --purple: #a11692;
   --orange: #f58a07;
   --pink: #ec368d;
+  --pink-2: #f47cff;
+  --pink-2-bg: #f47cff3b;
   --pink-bg: #ec368e54;
+
+  /* --blue: #3b429f;
+  --blue-bg: #3b429f21;
+
+  --green: #00a9a5;
+  --green-bg: #00a9a63b; */
 }
 
 body {
