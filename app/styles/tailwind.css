@@ -640,6 +640,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: var(--pink-2-bg);
 }
 
+.fill-primary-text {
+  fill: var(--primary-text);
+}
+
 .stroke-white {
   stroke: #fff;
 }
@@ -691,12 +695,43 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 5rem;
 }
 
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
 .pl-2 {
   padding-left: 0.5rem;
 }
 
+.pl-px {
+  padding-left: 1px;
+}
+
+.pl-16 {
+  padding-left: 4rem;
+}
+
+.pr-16 {
+  padding-right: 4rem;
+}
+
 .text-left {
   text-align: left;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .font-sans {
@@ -807,6 +842,37 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: var(--green);
 }
 
+.focus-within\:border-white:focus-within {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
+.focus-within\:bg-purple-800:focus-within {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 33 168 / var(--tw-bg-opacity));
+}
+
+.focus-within\:bg-slate-50\/5:focus-within {
+  background-color: rgb(248 250 252 / 0.05);
+}
+
+.focus-within\:fill-accent-pink:focus-within {
+  fill: var(--pink-2);
+}
+
+.focus-within\:text-yellow-300:focus-within {
+  --tw-text-opacity: 1;
+  color: rgb(253 224 71 / var(--tw-text-opacity));
+}
+
+.focus-within\:text-accent-pink:focus-within {
+  color: var(--pink-2);
+}
+
+.focus-within\:opacity-100:focus-within {
+  opacity: 1;
+}
+
 .hover\:border-white:hover {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
@@ -816,8 +882,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(248 250 252 / 0.05);
 }
 
+.hover\:bg-pink-500:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 72 153 / var(--tw-bg-opacity));
+}
+
+.hover\:fill-accent-pink:hover {
+  fill: var(--pink-2);
+}
+
 .hover\:text-accent-pink:hover {
   color: var(--pink-2);
+}
+
+.hover\:text-yellow-300:hover {
+  --tw-text-opacity: 1;
+  color: rgb(253 224 71 / var(--tw-text-opacity));
 }
 
 .hover\:opacity-100:hover {
@@ -826,6 +906,23 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .focus\:border-transparent:focus {
   border-color: transparent;
+}
+
+.focus\:fill-accent-pink:focus {
+  fill: var(--pink-2);
+}
+
+.focus-visible\:fill-accent-pink:focus-visible {
+  fill: var(--pink-2);
+}
+
+.active\:fill-accent-pink:active {
+  fill: var(--pink-2);
+}
+
+.active\:text-yellow-300:active {
+  --tw-text-opacity: 1;
+  color: rgb(253 224 71 / var(--tw-text-opacity));
 }
 
 @media (prefers-color-scheme: dark) {

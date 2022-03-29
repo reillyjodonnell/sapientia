@@ -16,8 +16,8 @@ const Logo = () => {
 
 const LanguageSelector = () => {
   return (
-    <div className=" cursor-pointer ml-2 sm:ml-4 p-1.5 flex justify-center items-center place-items-center border border-solid border-white/60  rounded-md drop-shadow-md  hover:bg-slate-50/5 hover:border-white">
-      <button className="flex justify-center items-center ">
+    <div className=" cursor-pointer ml-2 sm:ml-4 ">
+      <button className="p-1.5 flex justify-center items-center place-items-center border border-solid border-white/60  rounded-md drop-shadow-md  focus-within::bg-slate-50/5 focus-within::border-white hover:bg-slate-50/5 hover:border-white ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="icon icon-tabler icon-tabler-language h-6 w-6 stroke-white"
@@ -47,14 +47,20 @@ type NavElementProps = {
 
 const Github = () => {
   return (
-    <div className="cursor-pointer flex justify-center items-center  mx-2 sm:mx-4 opacity-80 hover:opacity-100 font-semibold hover:text-accent-pink">
+    <div className="cursor-pointer flex justify-center items-center  mx-2 sm:mx-4 opacity-80 hover:opacity-100 font-semibold">
       <a
         href="https://github.com/reillyjodonnell/sapientia"
         target="_blank"
         rel="noopener noreferrer"
+        className="focus-within:opacity-100 opacity-80"
       >
-        <svg width={'30px'} height={'30px'} viewBox="0 0 128 128">
-          <g fill="var(--primary-text)">
+        <svg
+          width={'30px'}
+          height={'30px'}
+          className=" fill-primary-text "
+          viewBox="0 0 128 128"
+        >
+          <g>
             <path
               fillRule="evenodd"
               clipRule="evenodd"
@@ -83,7 +89,7 @@ const Navigation = () => {
 const NavigationElement = ({ name, location }: NavElementProps) => {
   return (
     <a
-      className=" mx-2 sm:mx-4 opacity-80 hover:opacity-100 font-semibold hover:text-accent-pink"
+      className=" mx-2 sm:mx-4 opacity-80 hover:opacity-100 font-semibold focus-within:text-accent-pink hover:text-accent-pink"
       href={location}
     >
       {name}
@@ -95,7 +101,6 @@ export const Header = () => {
   return (
     <header className="px-6 lg:px-12 py-6 flex justify-between items-center text-white header">
       <Logo />
-      <Motd />
 
       <Navigation />
     </header>

@@ -17,6 +17,17 @@ export default function Index() {
         lineHeight: '1.4',
       }}
     >
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Motd />
+      </div>
+
       <Header />
 
       <MainContent />
