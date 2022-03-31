@@ -468,6 +468,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-sepia:  ;
 }
 
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.top-0 {
+  top: 0px;
+}
+
+.right-0 {
+  right: 0px;
+}
+
 .z-50 {
   z-index: 50;
 }
@@ -485,11 +501,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .my-10 {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
-}
-
-.my-12 {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
 }
 
 .ml-2 {
@@ -512,6 +523,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 4rem;
 }
 
+.h-60 {
+  height: 15rem;
+}
+
 .w-6 {
   width: 1.5rem;
 }
@@ -520,30 +535,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 100%;
 }
 
-.w-3\/5 {
-  width: 60%;
+.w-2\/3 {
+  width: 66.666667%;
 }
 
 .w-2\/5 {
   width: 40%;
 }
 
-.w-2\/3 {
-  width: 66.666667%;
+.w-\[90\%\] {
+  width: 90%;
 }
 
-.w-max {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
+.w-60 {
+  width: 15rem;
 }
 
 .cursor-pointer {
   cursor: pointer;
-}
-
-.flex-col {
-  flex-direction: column;
 }
 
 .place-items-center {
@@ -619,6 +628,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: var(--pink-2);
 }
 
+.border-accent-pink-bg {
+  border-color: var(--pink-2-bg);
+}
+
+.bg-accent-pink {
+  background-color: var(--pink-2);
+}
+
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -626,10 +643,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .bg-transparent {
   background-color: transparent;
-}
-
-.bg-accent-pink {
-  background-color: var(--pink-2);
 }
 
 .bg-dark-mode-bg {
@@ -670,9 +683,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 1.5rem;
 }
 
-.px-12 {
-  padding-left: 3rem;
-  padding-right: 3rem;
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .px-16 {
@@ -685,45 +703,17 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 1rem;
 }
 
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
 .px-20 {
   padding-left: 5rem;
   padding-right: 5rem;
 }
 
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
-.py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+.pr-16 {
+  padding-right: 4rem;
 }
 
 .pl-2 {
   padding-left: 0.5rem;
-}
-
-.pl-px {
-  padding-left: 1px;
-}
-
-.pl-16 {
-  padding-left: 4rem;
-}
-
-.pr-16 {
-  padding-right: 4rem;
 }
 
 .text-left {
@@ -747,11 +737,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-size: 4rem;
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -760,6 +745,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .font-bold {
@@ -787,6 +782,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
 .text-slate-800 {
   --tw-text-opacity: 1;
   color: rgb(30 41 59 / var(--tw-text-opacity));
@@ -795,11 +795,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-slate-300 {
   --tw-text-opacity: 1;
   color: rgb(203 213 225 / var(--tw-text-opacity));
-}
-
-.text-gray-400 {
-  --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
 .text-primary-text {
@@ -842,31 +837,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: var(--green);
 }
 
-.focus-within\:border-white:focus-within {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
-.focus-within\:bg-purple-800:focus-within {
-  --tw-bg-opacity: 1;
-  background-color: rgb(107 33 168 / var(--tw-bg-opacity));
-}
-
-.focus-within\:bg-slate-50\/5:focus-within {
-  background-color: rgb(248 250 252 / 0.05);
-}
-
-.focus-within\:fill-accent-pink:focus-within {
-  fill: var(--pink-2);
+.focus-within\:text-accent-pink:focus-within {
+  color: var(--pink-2);
 }
 
 .focus-within\:text-yellow-300:focus-within {
   --tw-text-opacity: 1;
   color: rgb(253 224 71 / var(--tw-text-opacity));
-}
-
-.focus-within\:text-accent-pink:focus-within {
-  color: var(--pink-2);
 }
 
 .focus-within\:opacity-100:focus-within {
@@ -880,15 +857,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .hover\:bg-slate-50\/5:hover {
   background-color: rgb(248 250 252 / 0.05);
-}
-
-.hover\:bg-pink-500:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 72 153 / var(--tw-bg-opacity));
-}
-
-.hover\:fill-accent-pink:hover {
-  fill: var(--pink-2);
 }
 
 .hover\:text-accent-pink:hover {
@@ -906,23 +874,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .focus\:border-transparent:focus {
   border-color: transparent;
-}
-
-.focus\:fill-accent-pink:focus {
-  fill: var(--pink-2);
-}
-
-.focus-visible\:fill-accent-pink:focus-visible {
-  fill: var(--pink-2);
-}
-
-.active\:fill-accent-pink:active {
-  fill: var(--pink-2);
-}
-
-.active\:text-yellow-300:active {
-  --tw-text-opacity: 1;
-  color: rgb(253 224 71 / var(--tw-text-opacity));
 }
 
 @media (prefers-color-scheme: dark) {
