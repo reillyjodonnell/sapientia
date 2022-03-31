@@ -1,6 +1,5 @@
 import style from '../styles/header.css';
 import type { LinksFunction } from 'remix';
-import Motd from './motd';
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: style }];
