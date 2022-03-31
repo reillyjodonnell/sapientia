@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import style from '../styles/main-content.css';
 import type { LinksFunction } from 'remix';
-
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: style }];
 };
@@ -31,13 +30,13 @@ export const MainContent = () => {
 
   return (
     <div className="main-content py-8 px-6 lg:px-12 flex justify-center items-center ">
-      <div>
+      <div className="w-[90%]">
         <div className=" h-full pt-py-12 flex justify-start items-center  w-full my-6 ">
           <div className="w-full ">
             <h1
               style={{
                 textShadow:
-                  ' 0 0 80px rgb(192 219 255 / 48%), 0 0 32px rgb(65 120 255 / 24%)',
+                  ' 0 0 80px rgb(192 219 255 / 30%), 0 0 32px rgb(65 120 255 / 15%)',
               }}
               className="font-extrabold text-[4rem] leading-[4.5rem]"
             >
@@ -63,7 +62,7 @@ export const MainContent = () => {
           </div>
         </div>
       </div>
-      <div className="main-search pr-16 mx-15 flex w-2/5">
+      <div className="main-search pr-16 mx-15 flex w-2/5 relative">
         <form className="flex w-full">
           <div
             ref={labelRef}
@@ -83,9 +82,10 @@ export const MainContent = () => {
               
               "
           >
+            <span className="text-2xl">🔍</span>
             <input
               ref={searchBar}
-              placeholder="Search a topic 🔥"
+              placeholder="Search a topic"
               style={{ outline: 'none' }}
               className="text-xl
                 
