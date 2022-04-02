@@ -28,9 +28,9 @@ export const MainContent = () => {
     };
   }, [handleKeyPress]);
 
-  return (
-    <div className="main-content py-8 px-6 lg:px-12 flex justify-center items-center ">
-      <div className="w-[90%]">
+  const LeftContent = () => {
+    return (
+      <div className="w-3/5 ">
         <div className=" h-full pt-py-12 flex justify-start items-center  w-full my-6 ">
           <div className="w-full ">
             <h1
@@ -62,7 +62,13 @@ export const MainContent = () => {
           </div>
         </div>
       </div>
-      <div className="main-search pr-16 mx-15 flex w-2/5 relative">
+    );
+  };
+
+  const SearchBar = () => {
+    //padding-right was 16
+    return (
+      <div className="main-search  mx-15 flex  relative">
         <form className="flex w-full">
           <div
             ref={labelRef}
@@ -117,6 +123,51 @@ export const MainContent = () => {
           </div>
         </form>
       </div>
+    );
+  };
+
+  const TopicContainer = ({ text, link }: any) => {
+    return (
+      <div
+        className=" 
+        relative mb-4 mr-4 block h-auto w-auto cursor-pointer rounded-full px-6
+        py-3 transition text-primary bg-secondary bg-gray-700 opacity-25 hover:opacity-100"
+      >
+        <span className="text-white">{text}</span>
+      </div>
+    );
+  };
+
+  const ChooseATopic = () => {
+    return (
+      <div className="flex justify-center items-center text-center flex-col">
+        <span className="flex p-8">Or choose one below</span>
+        <div className="col-span-full -mb-4 -mr-4 flex flex-wrap lg:col-span-10">
+          <TopicContainer text="React" />
+          <TopicContainer text="Remix" />
+          <TopicContainer text="JavaScript" />
+          <TopicContainer text="CSS" />
+          <TopicContainer text="Next" />
+          <TopicContainer text="Testing" />
+          <TopicContainer text="Jest" />
+        </div>
+      </div>
+    );
+  };
+
+  const RightContent = () => {
+    return (
+      <div className="flex flex-col w-2/5 px-16">
+        <SearchBar />
+        {/* <ChooseATopic /> */}
+      </div>
+    );
+  };
+
+  return (
+    <div className="main-content py-8 px-6 lg:px-12 flex justify-center items-center ">
+      <LeftContent />
+      <RightContent />
     </div>
   );
 };
