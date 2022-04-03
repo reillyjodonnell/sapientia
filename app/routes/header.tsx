@@ -1,5 +1,5 @@
 import style from '../styles/header.css';
-import type { LinksFunction } from 'remix';
+import type { LinksFunction } from '@remix-run/node';
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: style }];

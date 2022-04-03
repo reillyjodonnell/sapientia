@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import style from '../styles/main-content.css';
-import type { LinksFunction } from 'remix';
+import type { LinksFunction } from '@remix-run/node';
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: style }];
 };
