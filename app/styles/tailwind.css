@@ -674,6 +674,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: var(--dark-mode-bg);
 }
 
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
 .fill-primary-text {
   fill: var(--primary-text);
 }

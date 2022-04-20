@@ -2,6 +2,7 @@
 - connect to postgres db
   - get tables set up
 - authentication
+- develop UI/ routes
 
 ### key differentiator will be categorizing everything - by difficulty level (easy, med, hard conceptually) && reviewing by the public
 

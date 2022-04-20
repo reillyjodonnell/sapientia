@@ -26,6 +26,6 @@
 
 body {
   color: hsl(0, 0%, 100%);
-  background-color: var(--dark-mode-bg);
+  background-color: black;
   width: 100%;
 }
