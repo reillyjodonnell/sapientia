@@ -1,5 +1,6 @@
 import style from '../styles/header.css';
 import type { LinksFunction } from '@remix-run/node';
+import { Link } from '@remix-run/react';
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: style }];
@@ -8,7 +9,9 @@ export const links: LinksFunction = () => {
 const Logo = () => {
   return (
     <div className=" space-x-1 cursor-pointer">
-      <span className="text-4xl font-bold  ">Sapientia</span>
+      <Link to={'/'}>
+        <span className="text-4xl font-bold  ">Sapientia</span>
+      </Link>
     </div>
   );
 };

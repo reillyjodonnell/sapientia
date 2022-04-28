@@ -1,7 +1,6 @@
 import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import { Header } from '../header';
 
 export const loader: LoaderFunction = async ({ params }) => {
   const topic = { name: params.topicId };
@@ -14,11 +13,11 @@ export default function JokeRoute() {
 
   return (
     <>
-      <Header />
-      <div>
-        <p>Here's your topic:</p>
-        <p>{name}</p>
-      </div>
+      <>
+        <span className="text-3xl">Here's your topic:</span>
+        <span className="font-bold text-4xl">{name}</span>
+      </>
+      <span>Trending Articles</span>
     </>
   );
 }
