@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import style from '../styles/main-content.css';
 import type { LinksFunction } from '@remix-run/node';
+import { Link } from '@remix-run/react';
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: style }];
 };
@@ -56,7 +57,7 @@ export const MainContent = () => {
         </div>
         <div className=" h-full pb-py-12 flex justify-start items-center  w-full my-10">
           <div className="">
-            <button className=" opacity-80 cursor-pointer flex bg-accent-pink py-4 px-16 rounded-lg text-lg font-bold focus-within:opacity-100 hover:opacity-100">
+            <button className=" cursor-pointer flex bg-accent-pink py-4 px-16 rounded-lg text-lg border-4 opacity-90 border-transparent font-bold focus-within:border-4 focus-within:border-white focus-within:opacity-100  hover:border-4 hover:border-white hover:opacity-100   ">
               <span>Take a Tour</span>
             </button>
           </div>
@@ -126,14 +127,17 @@ export const MainContent = () => {
     );
   };
 
-  const TopicContainer = ({ text, link }: any) => {
+  const TopicContainer = ({ text }: any) => {
     return (
       <div
         className=" 
         relative mb-4 mr-4 block h-auto w-auto cursor-pointer rounded-full px-6
-        py-3 transition text-primary bg-secondary bg-gray-700 opacity-25 hover:opacity-100"
+        py-3 transition text-primary bg-secondary border-2 border-transparent 
+        bg-[#71717154] hover:brightness-150 hover:border-2 hover:border-accent-pink"
       >
-        <span className="text-white">{text}</span>
+        <Link to={`./learn/${text}`}>
+          <span className="text-white">{text}</span>
+        </Link>
       </div>
     );
   };
@@ -141,7 +145,7 @@ export const MainContent = () => {
   const ChooseATopic = () => {
     return (
       <div className="flex justify-center items-center text-center flex-col">
-        <span className="flex p-8">Or choose one below</span>
+        <span className="flex p-8">Or choose a topic</span>
         <div className="col-span-full -mb-4 -mr-4 flex flex-wrap lg:col-span-10">
           <TopicContainer text="React" />
           <TopicContainer text="Remix" />
@@ -150,6 +154,7 @@ export const MainContent = () => {
           <TopicContainer text="Next" />
           <TopicContainer text="Testing" />
           <TopicContainer text="Jest" />
+          <TopicContainer text="ACID" />
         </div>
       </div>
     );
@@ -159,7 +164,7 @@ export const MainContent = () => {
     return (
       <div className="flex flex-col w-2/5 px-16">
         <SearchBar />
-        {/* <ChooseATopic /> */}
+        <ChooseATopic />
       </div>
     );
   };

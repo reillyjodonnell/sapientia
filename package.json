@@ -5,13 +5,15 @@
   "license": "",
   "sideEffects": false,
   "scripts": {
+    "about": "echo 'Say something about this project'",
     "build": "npm run build:css && remix build",
     "build:css": "tailwindcss -m -i ./styles/tailwind.css -o app/styles/tailwind.css",
+    "start": "cross-env NODE_ENV=production node ./build/index.js",
+    "//For Local Dev env run `yarn dev` ": "--------------------------------------------------------------------------",
     "dev": "run-p dev:*",
     "dev:css": "tailwindcss -w -i ./styles/tailwind.css -o app/styles/tailwind.css",
     "dev:node": "cross-env NODE_ENV=development nodemon ./build/index.js --watch ./build/index.js",
-    "dev:remix": "remix watch",
-    "start": "cross-env NODE_ENV=production node ./build/index.js"
+    "dev:remix": "remix watch"
   },
   "dependencies": {
     "@remix-run/express": "^1.3.4",

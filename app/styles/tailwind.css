@@ -643,6 +643,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(255 255 255 / 0.6);
 }
 
+.border-transparent {
+  border-color: transparent;
+}
+
 .border-white {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
@@ -665,9 +669,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: transparent;
 }
 
-.bg-gray-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+.bg-\[\#71717154\] {
+  background-color: #71717154;
 }
 
 .bg-dark-mode-bg {
@@ -841,8 +844,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   opacity: 0.8;
 }
 
-.opacity-25 {
-  opacity: 0.25;
+.opacity-90 {
+  opacity: 0.9;
 }
 
 .shadow-sm {
@@ -876,6 +879,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-style: solid;
 }
 
+.focus-within\:border-white:focus-within {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
 .focus-within\:border-accent-green:focus-within {
   border-color: var(--green);
 }
@@ -888,9 +896,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   opacity: 1;
 }
 
+.hover\:border-4:hover {
+  border-width: 4px;
+}
+
+.hover\:border-2:hover {
+  border-width: 2px;
+}
+
 .hover\:border-white:hover {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
+.hover\:border-accent-pink:hover {
+  border-color: var(--pink-2);
 }
 
 .hover\:bg-slate-50\/5:hover {
@@ -903,6 +923,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .hover\:opacity-100:hover {
   opacity: 1;
+}
+
+.hover\:brightness-150:hover {
+  --tw-brightness: brightness(1.5);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .focus\:border-transparent:focus {
