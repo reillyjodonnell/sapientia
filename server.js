@@ -31,6 +31,11 @@ app.all(
   })
 );
 
+app.get('/servercode', (req, res) => {
+  console.log('SERVER CODE EXECUTED!');
+  res.send('BOOM');
+});
+
 const port = process.env.PORT || 4000;
 
 app.listen(port, () => {

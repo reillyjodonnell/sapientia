@@ -9,6 +9,21 @@ export const MainContent = () => {
   const searchBar = useRef<HTMLInputElement>(null);
   const labelRef = useRef<HTMLDivElement>(null);
 
+  const talkToTheServer = async () => {
+    console.log('Fetching now');
+    try {
+      const response = await fetch('http://localhost:4000/servercode');
+      const data = await response.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+
+    // fetch('http://localhost:4000/server-code').then((res) => {
+    //   console.log(res);
+    // });
+  };
+
   // handle what happens on key press
   const handleKeyPress = useCallback((event) => {
     if (event.metaKey === true && event.key === 'k') {
@@ -58,7 +73,7 @@ export const MainContent = () => {
         <div className=" h-full pb-py-12 flex justify-start items-center  w-full my-10">
           <div className="">
             <button className=" cursor-pointer flex bg-accent-pink py-4 px-16 rounded-lg text-lg border-4 opacity-90 border-transparent font-bold focus-within:border-4 focus-within:border-white focus-within:opacity-100  hover:border-4 hover:border-white hover:opacity-100   ">
-              <span>Take a Tour</span>
+              <span onClick={async () => talkToTheServer()}>Take a Tour</span>
             </button>
           </div>
         </div>
