@@ -101,7 +101,7 @@ const NavigationElement = ({ name, location }: NavElementProps) => {
 
 export const Header = () => {
   return (
-    <header className="px-6 lg:px-12 py-6 flex justify-between items-center text-white header">
+    <header className="px-6 lg:px-12 py-6 flex justify-between items-center text-white header  bg-black">
       <Logo />
 
       <Navigation />

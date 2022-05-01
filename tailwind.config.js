@@ -15,7 +15,8 @@ module.exports = {
         'accent-pink-bg': 'var(--pink-2-bg)',
         'accent-blue': 'var(--blue)',
         'accent-blue-bg': 'var(--blue-bg)',
-        
+        'accent-error': 'var(--error)',
+        'accent-error-bg': 'var(--error-bg)',
       },
     },
   },

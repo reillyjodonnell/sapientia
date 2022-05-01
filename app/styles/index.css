@@ -16,6 +16,8 @@
   --pink-2: #f47cff;
   --pink-2-bg: #f47cff3b;
   --pink-bg: #ec368e54;
+  --error: #ef4444;
+  --error-bg: #ef444471;
 
   /* --blue: #3b429f;
   --blue-bg: #3b429f21;
@@ -26,6 +28,6 @@
 
 body {
   color: hsl(0, 0%, 100%);
-  background-color: black;
+  background-color: #000000ed;
   width: 100%;
 }
