@@ -3,6 +3,7 @@ import type { LinksFunction } from '@remix-run/node';
 import { Header, links as headerLinks } from './header';
 import Motd from './motd';
 import { MainContent, links as mainContentLinks } from './main-content';
+import { Outlet } from '@remix-run/react';
 
 export const links: LinksFunction = () => [
   ...headerLinks(),
@@ -27,9 +28,8 @@ export default function Index() {
       >
         <Motd />
       </div>
-
       <Header />
-
+      <Outlet />
       <MainContent />
     </div>
   );

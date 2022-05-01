@@ -16,6 +16,7 @@
     "dev:remix": "remix watch"
   },
   "dependencies": {
+    "@prisma/client": "^3.13.0",
     "@remix-run/express": "^1.3.4",
     "@remix-run/node": "^1.3.4",
     "@remix-run/react": "^1.3.4",
@@ -38,6 +39,7 @@
     "nodemon": "^2.0.15",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.12",
+    "prisma": "^3.13.0",
     "tailwindcss": "^3.0.23",
     "typescript": "^4.5.5"
   },

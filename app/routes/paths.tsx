@@ -25,9 +25,6 @@ export default function index() {
         </div>
 
         <Outlet />
-        {/* <div className="flex mt-4">
-          <PopularTopics />
-        </div> */}
       </div>
     </>
   );

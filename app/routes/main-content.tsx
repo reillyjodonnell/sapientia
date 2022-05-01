@@ -1,48 +1,27 @@
 import { useCallback, useEffect, useRef } from 'react';
 import style from '../styles/main-content.css';
-import type { LinksFunction } from '@remix-run/node';
+import { LinksFunction } from '@remix-run/node';
 import { Link } from '@remix-run/react';
+import Search from '~/components/search';
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: style }];
 };
 export const MainContent = () => {
-  const searchBar = useRef<HTMLInputElement>(null);
-  const labelRef = useRef<HTMLDivElement>(null);
-
   const talkToTheServer = async () => {
-    console.log('Fetching now');
     try {
       const response = await fetch('http://localhost:4000/servercode');
       const data = await response.json();
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
 
     // fetch('http://localhost:4000/server-code').then((res) => {
-    //   console.log(res);
     // });
   };
 
-  // handle what happens on key press
-  const handleKeyPress = useCallback((event) => {
-    if (event.metaKey === true && event.key === 'k') {
-      if (searchBar.current !== null && labelRef.current !== null) {
-        searchBar.current.focus();
-        labelRef.current.focus();
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    // attach the event listener
-    document.addEventListener('keydown', handleKeyPress);
-
-    // remove the event listener
-    return () => {
-      document.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [handleKeyPress]);
+  const handleForm = (e: any) => {
+    e.preventDefault();
+    const text = e.target[0].value;
+    console.log(text);
+  };
 
   const LeftContent = () => {
     return (
@@ -81,79 +60,18 @@ export const MainContent = () => {
     );
   };
 
-  const SearchBar = () => {
-    //padding-right was 16
-    return (
-      <div className="main-search  mx-15 flex  relative">
-        <form className="flex w-full">
-          <div
-            ref={labelRef}
-            className="flex
-             sm:flex items-center w-full text-left
-              space-x-3 px-4 
-               shadow-sm rounded-lg text-slate-800
-              dark:ring-0 dark:text-slate-800
-              dark:highlight-white/5  
-              z-50
-               border-4 border-white
-               bg-white
-              focus-within:border-4 focus-within:border-solid focus-within:border-accent-green
-              h-16
-              z-100
-              
-              
-              "
-          >
-            <span className="text-2xl">🔍</span>
-            <input
-              ref={searchBar}
-              placeholder="Search a topic"
-              style={{ outline: 'none' }}
-              className="text-xl
-                
-                
-                
-                
-                
-                w-full bg-transparent border:[none] focus:[outline: 0, border: none] focus:border-transparent"
-            ></input>
-            <kbd
-              className="font-sans font-semibold dark:text-slate-500
-              
-              
-              text-xl
-              "
-            >
-              <abbr
-                title="Command"
-                className="no-underline text-slate-300 dark:text-slate-500
-                  
-                  text-xl
-                  
-                  "
-              >
-                ⌘
-              </abbr>
-              K
-            </kbd>
-          </div>
-        </form>
-      </div>
-    );
-  };
-
   const TopicContainer = ({ text }: any) => {
     return (
-      <div
-        className=" 
+      <Link to={`./learn/${text}`}>
+        <div
+          className=" 
         relative mb-4 mr-4 block h-auto w-auto cursor-pointer rounded-full px-6
         py-3 transition text-primary bg-secondary border-2 border-transparent 
         bg-[#71717154] hover:brightness-150 hover:border-2 hover:border-accent-pink"
-      >
-        <Link to={`./learn/${text}`}>
+        >
           <span className="text-white">{text}</span>
-        </Link>
-      </div>
+        </div>
+      </Link>
     );
   };
 
@@ -178,7 +96,7 @@ export const MainContent = () => {
   const RightContent = () => {
     return (
       <div className="flex flex-col w-2/5 px-16">
-        <SearchBar />
+        <Search handleForm={handleForm} />
         <ChooseATopic />
       </div>
     );

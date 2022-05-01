@@ -12,7 +12,7 @@ const data = [
 export default function PopularTopics() {
   return (
     <div className="flex flex-col mr-10 w-80">
-      <span className="font-bold size text-xl">Popular Topics</span>
+      <span className="font-bold size text-2xl">Popular Topics</span>
       <>
         {data.map((item) => {
           const lowerCaseTitle = item.name.toLowerCase();
@@ -22,7 +22,7 @@ export default function PopularTopics() {
               className="flex justify-start items-center px-3 py-1 my-2"
             >
               <Link to={`./${lowerCaseTitle}`}>
-                <span className="cursor-pointer hover:text-accent-pink ">
+                <span className="cursor-pointer text-lg hover:text-accent-pink ">
                   {item.name}
                 </span>
               </Link>

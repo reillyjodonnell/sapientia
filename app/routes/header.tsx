@@ -79,7 +79,7 @@ const Github = () => {
 const Navigation = () => {
   return (
     <nav className="flex justify-center items-center">
-      <NavigationElement name="Courses" location="/courses" />
+      <NavigationElement name="Topics" location="/learn" />
       <NavigationElement name="Paths" location="/paths" />
       <NavigationElement name="Login" location="/login" />
       <Github />

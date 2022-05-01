@@ -107,8 +107,9 @@ const ResourceLink = ({
   const [validLink, setValidLink] = useState(false);
   const [linkError, setLinkError] = useState(false);
   const volume: number = mute ? 0 : 0.25;
-  const [upvoteSound] = useSound(plop, { volume: volume });
+  const [upvoteSound] = useSound(plop, { soundEnabled: !mute, volume: volume });
   const [downvoteSound] = useSound(plop, {
+    soundEnabled: !mute,
     playbackRate: 0.65,
     volume: volume,
     // `interrupt` ensures that if the sound starts again before it's
@@ -321,12 +322,22 @@ export default function JokeRoute() {
   const topic = useLoaderData();
   const name: string = topic.name;
 
+  useEffect(() => {
+    const mute = localStorage.getItem('mute');
+    const isMuted = mute !== null && JSON.parse(mute);
+    setMute(isMuted);
+  }, []);
+
   const toggleAudio = () => {
+    mute
+      ? localStorage.setItem('mute', 'false')
+      : localStorage.setItem('mute', 'true');
+
     setMute((prev) => !prev);
   };
 
   return (
-    <div className="flex justify-center items-center flex-col">
+    <div className="flex justify-center items-center flex-col ">
       <div className="flex justify-center items-center">
         <span
           className="font-bold text-6xl mb-3 capitalize"
@@ -342,7 +353,7 @@ export default function JokeRoute() {
         </span>
       </div>
 
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col ">
         {data
           .sort((a, b) => (a.upvotes < b.upvotes ? 1 : -1))
           .map((item, index) => {
