@@ -19,12 +19,12 @@ export default function PopularTopics() {
           return (
             <div
               key={item.id}
-              className="flex justify-start items-center px-3 py-1 my-2"
+              className="flex justify-start items-center my-0.5"
             >
               <Link to={`./${lowerCaseTitle}`}>
-                <span className="cursor-pointer text-lg hover:text-accent-pink ">
-                  {item.name}
-                </span>
+                <div className="w-full flex cursor-pointer px-5 py-2 rounded-xl hover:bg-stone-900 hover:text-accent-pink">
+                  <span className="cursor-pointer text-lg ">{item.name}</span>
+                </div>
               </Link>
             </div>
           );
