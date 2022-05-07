@@ -200,7 +200,7 @@ const ResourceLink = ({
   };
 
   return (
-    <div className="flex w-30 my-8 shadow-lg shadow-stone-900 rounded-2xl  border-2 border-solid  border-stone-800 py-8  relative">
+    <div className="flex w-30 my-8 shadow-lg shadow-stone-900 rounded-2xl  border-2 border-solid bg-[#0000001c] hover:border-stone-600  border-stone-800 py-8  relative">
       <div className=" text-white flex justify-center items-center w-full ">
         <span className="flex justify-center items-center mx-10 mb-auto text-3xl">
           {rank}
