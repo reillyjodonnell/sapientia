@@ -1,4 +1,5 @@
 import { Link } from '@remix-run/react';
+import FormattedInput from '~/components/formatted-input';
 
 export default function Login() {
   return (
@@ -6,56 +7,35 @@ export default function Login() {
       <div className="flex flex-col justify-center items-center px-12 ">
         <span className="text-4xl font-bold mb-6">Sign Up</span>
         <form>
-          <div className="flex w-80 flex-col">
-            <label
-              htmlFor="name"
-              className="flex justify-start items-center w-full text-xl mb-1"
-            >
-              Name
-            </label>
-            <input
-              id="name"
-              autoComplete="name"
-              type="text"
-              name="email"
-              placeholder="Ana.. Darth Vader"
-              className="flex w-full px-2 mb-6 py-4 border-2 border-solid border-gray-600 focus-within:border-white  bg-black rounded-lg hover:shadow-2xl "
-            />
-          </div>
-          <div className="flex w-80 flex-col">
-            <label
-              htmlFor="email"
-              className="flex justify-start items-center w-full text-xl mb-1"
-            >
-              Email
-            </label>
-            <input
-              id="email"
-              autoComplete="email"
-              type="email"
-              name="email"
-              placeholder="Vader@deathstar.sit"
-              className="flex w-full px-2 mb-6 py-4 border-2 border-solid border-gray-600 focus-within:border-white  bg-black rounded-lg hover:shadow-2xl "
-            />
-          </div>
-          <div className="flex w-80 flex-col">
-            <label
-              htmlFor="password"
-              className="flex justify-start items-center w-full text-xl mb-1"
-            >
-              Password
-            </label>
-            <input
-              id="current-password"
-              autoComplete="current-password"
-              name="password"
-              type="password"
-              placeholder="HanShotFirst"
-              className="flex w-full px-2 py-4 border-2 border-solid border-gray-600 focus-within:border-white  bg-black rounded-lg hover:shadow-2xl "
-            />
-          </div>
-
-          <div className="my-8 flex justify-start items-center">
+          <FormattedInput
+            htmlFor="name"
+            label="Name"
+            id="name"
+            autoComplete="name"
+            name="name"
+            type="text"
+            placeholder="Ana ... Darth Vader"
+          />
+          <FormattedInput
+            htmlFor="email"
+            label="Email"
+            id="email"
+            autoComplete="email"
+            name="email"
+            type="email"
+            placeholder="Vader@deathstar.sit"
+          />
+          <FormattedInput
+            htmlFor="password"
+            label="Password"
+            id="password"
+            autoComplete="current-password"
+            name="password"
+            type="password"
+            placeholder="HanShotFirst"
+            toggleShowHide={true}
+          />
+          <div className="flex justify-start items-center">
             <input
               className="h-6 w-6 accent-accent-pink"
               name="agree"
