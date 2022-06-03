@@ -2,9 +2,14 @@ import { useState } from 'react';
 import FormattedInput from '~/components/formatted-input';
 import HighlightableTextInput from '~/components/highlightable-text-input';
 import { login } from '~/utils/session.server';
-import type { ActionFunction } from '@remix-run/node';
+import type { ActionFunction, LinksFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { Link, useSearchParams } from '@remix-run/react';
+import stylesUrl from '~/styles/index.css';
+
+export const links: LinksFunction = () => {
+  return [{ rel: 'stylesheet', href: stylesUrl }];
+};
 
 function validateUsername(username: unknown) {
   if (typeof username !== 'string' || username.length < 3) {

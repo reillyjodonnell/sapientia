@@ -9,6 +9,9 @@ import {
 import type { LinksFunction } from '@remix-run/node';
 import type { MetaFunction } from '@remix-run/node';
 import styles from './styles/tailwind.css';
+import SoundProvider from './contexts/sound-context';
+import Motd from './components/motd';
+import { Header } from './components/header';
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: styles }];
@@ -28,10 +31,30 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
+        <div
+          style={{
+            fontFamily: 'system-ui, sans-serif',
+            lineHeight: '1.4',
+          }}
+        >
+          <SoundProvider>
+            <div
+              style={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Motd />
+            </div>
+            <Header />
+            <Outlet />
+            <ScrollRestoration />
+            <Scripts />
+            <LiveReload />
+          </SoundProvider>
+        </div>
       </body>
     </html>
   );

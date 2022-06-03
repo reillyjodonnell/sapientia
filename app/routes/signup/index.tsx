@@ -1,5 +1,11 @@
+import { LinksFunction } from '@remix-run/node';
 import { Link } from '@remix-run/react';
 import FormattedInput from '~/components/formatted-input';
+import stylesUrl from '~/styles/index.css';
+
+export const links: LinksFunction = () => {
+  return [{ rel: 'stylesheet', href: stylesUrl }];
+};
 
 export default function Login() {
   return (

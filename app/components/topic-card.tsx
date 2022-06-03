@@ -30,6 +30,7 @@ export default function TopicCard({
   const [count, setCount] = useState(upvotes ?? 0);
   const [validLink, setValidLink] = useState(false);
   const [linkError, setLinkError] = useState(false);
+
   const volume: number = mute ? 0 : 0.2;
   const [upvoteSound] = useSound(plop, { soundEnabled: !mute, volume: volume });
   const [downvoteSound] = useSound(plop, {

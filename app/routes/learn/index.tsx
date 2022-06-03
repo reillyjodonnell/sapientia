@@ -1,7 +1,14 @@
-export default function Learn() {
+import type { LinksFunction } from '@remix-run/node';
+import stylesUrl from '~/styles/index.css';
+
+export const links: LinksFunction = () => {
+  return [{ rel: 'stylesheet', href: stylesUrl }];
+};
+
+export default function Index() {
   return (
-    <div>
-      <span>Here's some example topics</span>
-    </div>
+    <>
+      <span>Go learn something</span>
+    </>
   );
 }

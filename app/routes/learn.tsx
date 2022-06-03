@@ -1,19 +1,17 @@
-import { Header } from './header';
 import { Outlet } from '@remix-run/react';
-import stylesUrl from '~/styles/index.css';
 import type { LinksFunction } from '@remix-run/node';
-import { links as mainContentLinks } from './main-content';
-import PopularTopics from './popular-topics';
+import { links as mainContentLinks } from '~/components/main-content';
+import PopularTopics from '~/components/popular-topics';
 import Search from '~/components/search';
-export const links: LinksFunction = () => [
-  ...mainContentLinks(),
-  { rel: 'stylesheet', href: stylesUrl },
-];
+import stylesUrl from '~/styles/index.css';
 
-export default function index() {
+export const links: LinksFunction = () => {
+  return [{ rel: 'stylesheet', href: stylesUrl }];
+};
+
+export default function Learn() {
   return (
     <>
-      <Header />
       <div className="flex content-center px-6 lg:px-14 my-10 items-start">
         <div className="flex flex-col">
           <div className="mb-4">
@@ -23,8 +21,10 @@ export default function index() {
             <PopularTopics />
           </div>
         </div>
+        <div className="flex flex-col justify-center items-center">
+          <Outlet />
+        </div>
 
-        <Outlet />
         {/* <div className="flex mt-4">
           <PopularTopics />
         </div> */}
