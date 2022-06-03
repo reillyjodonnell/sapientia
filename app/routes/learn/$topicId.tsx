@@ -1,9 +1,10 @@
 import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { Outlet, useLoaderData } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import TopicCard, { baseArticle } from '~/components/topic-card';
 import { db } from '~/utils/db.server';
+import { Link } from '@remix-run/react';
 
 type bothData = {
   // of type LoaderData
@@ -41,7 +42,6 @@ export default function JokeRoute() {
   const { data, name } = useLoaderData<bothData>();
 
   const { articlePosts } = data;
-  console.log(articlePosts);
 
   useEffect(() => {
     const mute = localStorage.getItem('mute');
@@ -58,7 +58,7 @@ export default function JokeRoute() {
   };
 
   return (
-    <div className="flex justify-center items-center flex-col ml-20 ">
+    <div className="flex justify-center items-center flex-col ml-20 w-[600px] ">
       <div className="flex justify-center items-center">
         <span
           className="font-bold text-6xl mb-3 capitalize"
@@ -74,36 +74,7 @@ export default function JokeRoute() {
           {mute ? '🔇' : '🔈'}
         </span> */}
       </div>
-      <div className="flex flex-col text-xl mt-8">
-        <button className=" px-10 py-4 rounded-lg border-4 border-white hover:border-accent-pink hover:bg-accent-pink-bg active:border-accent-pink active:bg-accent-pink-bg ">
-          + Add Article
-        </button>
-      </div>
-
-      <div className="flex flex-col ">
-        {articlePosts.length ? (
-          articlePosts
-            .sort((a, b) => (a.points < b.points ? 1 : -1))
-            .map((item, index) => {
-              const rank = index + 1;
-
-              return (
-                <TopicCard
-                  mute={mute}
-                  author={item.authorOfPost}
-                  title={item.title}
-                  link={item.url}
-                  upvotes={item.points}
-                  key={item.id}
-                  rank={rank}
-                  twitterHandle={item.authorTwitter ?? ''}
-                />
-              );
-            })
-        ) : (
-          <span>😔 No articles for this topic, yet!</span>
-        )}
-      </div>
+      <Outlet />
     </div>
   );
 }

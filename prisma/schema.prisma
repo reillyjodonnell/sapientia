@@ -41,6 +41,6 @@ model Post {
   authorTwitter String?
   title         String
   url           String
-  points        Int     @default(0)
+  points        Int?    @default(0)
   topic         String
 }

@@ -2,11 +2,13 @@ import { Link } from 'react-router-dom';
 
 const data = [
   { name: 'Svelte', id: 0 },
-  { name: 'Tailwind', id: 1 },
-  { name: 'Rust', id: 2 },
-  { name: 'Python', id: 3 },
-  { name: 'useEffect', id: 4 },
-  { name: 'Pagination', id: 5 },
+  { name: 'React', id: 1 },
+  { name: 'Tailwind', id: 2 },
+  { name: 'Rust', id: 3 },
+  { name: 'Python', id: 4 },
+  { name: 'Remix', id: 5 },
+  { name: 'Pagination', id: 6 },
+  { name: 'useEffect', id: 7 },
 ];
 
 export default function PopularTopics() {
