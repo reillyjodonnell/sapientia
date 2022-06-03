@@ -112,6 +112,11 @@ export default function JokeRoute() {
           {mute ? '🔇' : '🔈'}
         </span>
       </div>
+      <div className="flex flex-col text-xl mt-8">
+        <button className=" px-10 py-4 rounded-lg border-4 border-white hover:border-accent-pink hover:bg-accent-pink-bg active:border-accent-pink active:bg-accent-pink-bg ">
+          + Add Article
+        </button>
+      </div>
 
       <div className="flex flex-col ">
         {data
