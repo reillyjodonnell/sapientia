@@ -7,8 +7,8 @@ const data = [
   { name: 'Rust', id: 3 },
   { name: 'Python', id: 4 },
   { name: 'Remix', id: 5 },
-  { name: 'Pagination', id: 6 },
-  { name: 'useEffect', id: 7 },
+  { name: 'CSS', id: 6 },
+  { name: 'Node', id: 7 },
 ];
 
 export default function PopularTopics() {
