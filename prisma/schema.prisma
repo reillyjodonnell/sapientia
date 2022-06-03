@@ -15,7 +15,7 @@ model User {
   createdAt    DateTime @default(now())
   username     String   @unique
   passwordHash String
-  posts Post[]
+  // posts Post[]
 }
 
 model Like {
@@ -29,17 +29,18 @@ model Author {
   id         String @id @default(uuid())
   twitterUrl String
   blogUrl    String
-  articles   Post[]
+  // articles   Post[]
 }
 
 model Post {
-  id           String   @id @default(uuid())
-  postedBy     User     @relation(fields: [posterId], references: [id])
-  posterId     String
-  authorOfPost Author   @relation(fields: [authorId], references: [id])
-  authorId     String
-  createdAt    DateTime @default(now())
-  title        String
-  url          String
-  points       Int
+  id            String  @id @default(uuid())
+  // postedBy     User     @relation(fields: [posterId], references: [id])
+  // posterId     String
+  // authorOfPost Author   @relation(fields: [authorId], references: [id])
+  authorOfPost  String
+  authorTwitter String?
+  title         String
+  url           String
+  points        Int     @default(0)
+  topic         String
 }
