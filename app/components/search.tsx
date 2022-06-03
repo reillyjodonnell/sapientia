@@ -3,7 +3,7 @@ import type { ActionFunction } from '@remix-run/node';
 import { useNavigate } from 'react-router-dom';
 interface IProps {
   handleForm: Function;
-  size: string;
+  size?: string;
 }
 
 export let action: ActionFunction = async ({ request }) => {

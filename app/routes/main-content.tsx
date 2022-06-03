@@ -61,8 +61,9 @@ export const MainContent = () => {
   };
 
   const TopicContainer = ({ text }: any) => {
+    const link = text.toLowerCase();
     return (
-      <Link to={`./learn/${text}`}>
+      <Link to={`./learn/${link}`}>
         <div
           className=" 
         relative mb-4 mr-4 block h-auto w-auto cursor-pointer rounded-full px-6

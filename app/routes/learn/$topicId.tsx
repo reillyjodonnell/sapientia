@@ -19,9 +19,8 @@ type LoaderData = {
     authorTwitter: string | null;
     title: string;
     url: string;
-    points: number;
+    points: number | null;
     topic: string;
-    createdAt: Date;
   }>;
 };
 export const loader: LoaderFunction = async ({ params }) => {
@@ -29,9 +28,11 @@ export const loader: LoaderFunction = async ({ params }) => {
 
   const data: LoaderData = {
     articlePosts: await db.post.findMany({
+      take: 10,
       where: {
         topic: name,
       },
+      orderBy: { points: 'desc' },
     }),
   };
   return json({ data, name });

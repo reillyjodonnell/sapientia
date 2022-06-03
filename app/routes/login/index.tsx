@@ -2,78 +2,43 @@ import { useState } from 'react';
 import FormattedInput from '~/components/formatted-input';
 import HighlightableTextInput from '~/components/highlightable-text-input';
 import { login } from '~/utils/session.server';
+import type { ActionFunction } from '@remix-run/node';
+import { json } from '@remix-run/node';
 import { Link, useSearchParams } from '@remix-run/react';
+
+function validateUsername(username: unknown) {
+  if (typeof username !== 'string' || username.length < 3) {
+    return `Usernames must be at least 3 characters long`;
+  }
+}
+
+function validatePassword(password: unknown) {
+  if (typeof password !== 'string' || password.length < 6) {
+    return `Passwords must be at least 6 characters long`;
+  }
+}
+
+const badRequest = (data: any) => {
+  json(data, { status: 400 });
+};
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData();
-  const loginType = form.get('loginType');
-  const username = form.get('username');
   const password = form.get('password');
-  const redirectTo = validateUrl(form.get('redirectTo') || '/jokes');
-  if (
-    typeof loginType !== 'string' ||
-    typeof username !== 'string' ||
-    typeof password !== 'string' ||
-    typeof redirectTo !== 'string'
-  ) {
+  const username = form.get('username');
+
+  if (typeof username !== 'string' || typeof password !== 'string') {
     return badRequest({
       formError: `Form not submitted correctly.`,
     });
   }
-
-  const fields = { loginType, username, password };
-  const fieldErrors = {
-    username: validateUsername(username),
-    password: validatePassword(password),
-  };
-  if (Object.values(fieldErrors).some(Boolean))
-    return badRequest({ fieldErrors, fields });
-
-  switch (loginType) {
-    case 'login': {
-      // login to get the user
-      // if there's no user, return the fields and a formError
-      // if there is a user, create their session and redirect to /jokes
-      return badRequest({
-        fields,
-        formError: 'Not implemented',
-      });
-    }
-    case 'register': {
-      const userExists = await db.user.findFirst({
-        where: { username },
-      });
-      if (userExists) {
-        return badRequest({
-          fields,
-          formError: `User with username ${username} already exists`,
-        });
-      }
-      // create the user
-      // create their session and redirect to /jokes
-      return badRequest({
-        fields,
-        formError: 'Not implemented',
-      });
-    }
-    default: {
-      return badRequest({
-        fields,
-        formError: `Login type invalid`,
-      });
-    }
-  }
 };
 
 export default function Login() {
-  const [showPassword, setShowPassword] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
   const [searchParams] = useSearchParams();
 
-
-  function test(e: any) {
-    console.log(e.target.value);
-  }
   return (
     <div className="h-full flex flex-col justify-center items-center m-10">
       <div className="flex flex-col justify-center items-center px-12 ">
@@ -106,7 +71,6 @@ export default function Login() {
             toggleShowHide={true}
             hasError={error}
             errorMessage="invalid pass"
-            onChange={test}
           />
           <button className="flex mr-auto text-neutral-300 text-md hover:text-accent-pink cursor-pointer">
             Forgot password?
