@@ -1,11 +1,31 @@
 import { useRef, useCallback, useEffect } from 'react';
+import type { ActionFunction } from '@remix-run/node';
+import { useNavigate } from 'react-router-dom';
 interface IProps {
   handleForm: Function;
   size: string;
 }
+
+export let action: ActionFunction = async ({ request }) => {
+  let form = await request.formData();
+  let topic = form.get('topic');
+  console.log(topic);
+  setTimeout(() => {
+    return null;
+  }, 1200000);
+};
+
 export default function Search({ handleForm, size = 'large' }: IProps) {
   const searchRef = useRef<HTMLInputElement>(null);
   const labelRef = useRef<HTMLDivElement>(null);
+  let navigate = useNavigate();
+
+  async function handleSubmit(event: any) {
+    let topic = event.target[0].value;
+    event.preventDefault();
+    topic = topic.toLowerCase();
+    navigate(`../learn/${topic}`, { replace: true });
+  }
 
   // handle what happens on key press
   const handleKeyPress = useCallback((event) => {
@@ -30,10 +50,11 @@ export default function Search({ handleForm, size = 'large' }: IProps) {
   return (
     <div className={`main-search flex  relative`}>
       <form
+        onSubmit={handleSubmit}
         className={`flex ${
           size === 'large' ? 'w-full' : size === 'medium' ? 'w-3/4' : 'w-1/2'
         }`}
-        onSubmit={(e) => handleForm(e)}
+        // onSubmit={(e) => handleForm(e)}
       >
         <div
           ref={labelRef}
@@ -47,15 +68,10 @@ export default function Search({ handleForm, size = 'large' }: IProps) {
           <span className="text-2xl">🔍</span>
           <input
             ref={searchRef}
+            name="topic"
             placeholder="Search a topic"
             style={{ outline: 'none' }}
-            className="text-xl
-                
-                
-                
-                
-                
-                w-full bg-transparent border:[none] focus:[outline: 0, border: none] focus:border-transparent"
+            className="text-xl w-full bg-transparent border:[none] focus:[outline: 0, border: none] focus:border-transparent"
           ></input>
           <kbd
             className="font-sans font-semibold dark:text-slate-500
@@ -76,6 +92,7 @@ export default function Search({ handleForm, size = 'large' }: IProps) {
             </abbr>
             K
           </kbd>
+          <input type="submit" hidden />
         </div>
       </form>
     </div>
