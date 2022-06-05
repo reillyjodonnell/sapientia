@@ -1,4 +1,5 @@
 import type { LinksFunction } from '@remix-run/node';
+import { Outlet } from '@remix-run/react';
 import stylesUrl from '~/styles/index.css';
 
 export const links: LinksFunction = () => {
@@ -8,7 +9,7 @@ export const links: LinksFunction = () => {
 export default function Index() {
   return (
     <>
-      <span>Go learn something</span>
+      <span>Choose a topic ⬅️</span>
     </>
   );
 }

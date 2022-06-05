@@ -90,6 +90,38 @@ export default function New() {
   let topic = params.topicId;
   topic = topic && topic[0].toUpperCase() + topic.substring(1);
 
+  interface IFormInput {
+    id: string;
+    name: string;
+    type: string;
+    // value: string;
+    defaultValue?: string;
+    placeholder?: string;
+  }
+
+  function FormInput({
+    id,
+    name,
+    type,
+    defaultValue,
+    placeholder,
+  }: IFormInput) {
+    const error = !!defaultValue;
+
+    return (
+      <input
+        defaultValue={defaultValue}
+        className={`shadow appearance-none border-2 border-white  rounded w-full py-4 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-accent-pink  ${
+          error && 'border-red-600'
+        }`}
+        id={id}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+      />
+    );
+  }
+
   // We need to show the word as capitalized
 
   return (
@@ -116,20 +148,18 @@ export default function New() {
             <label className="block  text-lg font-bold mb-2" htmlFor="url">
               URL
             </label>
-            <input
+            <FormInput
               defaultValue={actionData?.fields?.url}
-              className={`shadow appearance-none border-2 border-white  rounded w-full py-4 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline ${
-                actionData?.fieldErrors?.url && 'border-red-600'
-              }`}
               id="url"
               name="url"
               type="url"
               placeholder="https://overreacted.io/"
             />
+
             {actionData?.fieldErrors?.url ? (
               <div className="flex ">
                 <span className="text-red-600  text-md">
-                  {actionData?.fieldErrors?.url}
+                  ❗️ {actionData?.fieldErrors?.url}
                 </span>
               </div>
             ) : null}
@@ -138,11 +168,9 @@ export default function New() {
             <label className="block  text-lg font-bold mb-2" htmlFor="title">
               Article Title
             </label>
-            <input
+
+            <FormInput
               defaultValue={actionData?.fields?.title}
-              className={`shadow appearance-none border-2 border-white  rounded w-full py-4 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline ${
-                actionData?.fieldErrors?.title && 'border-red-600 '
-              }`}
               id="title"
               type="text"
               name="title"
@@ -151,7 +179,7 @@ export default function New() {
             {actionData?.fieldErrors?.title ? (
               <div className="flex ">
                 <span className="text-red-600 text-md">
-                  {actionData?.fieldErrors?.title}
+                  ❗️ {actionData?.fieldErrors?.title}
                 </span>
               </div>
             ) : null}
@@ -161,11 +189,9 @@ export default function New() {
             <label className="block  text-lg font-bold mb-2" htmlFor="author">
               Author
             </label>
-            <input
+
+            <FormInput
               defaultValue={actionData?.fields?.authorOfPost}
-              className={`shadow appearance-none border-2 border-white  rounded w-full py-4 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline ${
-                actionData?.fieldErrors?.authorOfPost && 'border-red-600 '
-              }`}
               id="author"
               type="text"
               name="author"
@@ -174,7 +200,7 @@ export default function New() {
             {actionData?.fieldErrors?.authorOfPost ? (
               <div className="flex ">
                 <span className="text-red-600 text-md">
-                  {actionData?.fieldErrors?.authorOfPost}
+                  ❗️ {actionData?.fieldErrors?.authorOfPost}
                 </span>
               </div>
             ) : null}
@@ -182,7 +208,7 @@ export default function New() {
 
           <div className="flex items-center justify-between mt-2">
             <button
-              className=" bg-accent-pink w-full hover:brightness-110 border-2 border-solid border-accent-pink hover:border-white active:border-white text-white font-bold mt-8 py-4 px-4 rounded focus:outline-none focus:shadow-outline"
+              className=" bg-accent-pink w-full hover:brightness-110 border-2 border-solid border-accent-pink hover:border-white active:border-white text-white font-bold mt-8 py-4 px-4 rounded focus:outline-none focus:border-white focus:shadow-outline"
               type="submit"
             >
               Submit Article
