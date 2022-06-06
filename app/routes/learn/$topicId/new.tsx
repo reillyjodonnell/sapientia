@@ -111,9 +111,11 @@ export default function New() {
     return (
       <input
         defaultValue={defaultValue}
-        className={`shadow appearance-none border-2 border-white  rounded w-full py-4 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-accent-pink  ${
-          error && 'border-red-600'
-        }`}
+        className={`bg-transparent shadow appearance-none border-2 border-gray-600  rounded w-full py-4 px-3 text-gray-200 leading-tight 
+        focus:outline-none focus:shadow-outline 
+          focus:border-white hover:border-white
+        
+        ${error && 'border-red-600'}`}
         id={id}
         name={name}
         type={type}
@@ -128,14 +130,17 @@ export default function New() {
     <>
       <div className="w-full max-w-xs">
         <form method="post" className="shadow-md rounded pt-4 pb-8 mb-4">
-          <div className="mb-2">
-            <label className="block  text-lg font-bold mb-2" htmlFor="topic">
+          <div className="mb-4">
+            <label
+              className="flex pointer-events-none  text-lg font-bold mb-2"
+              htmlFor="topic"
+            >
               Topic
             </label>
             <input
-              className={`shadow border-2 border-white text-gray-700 appearance-none  rounded w-full py-4 px-3  leading-tight focus:outline-none focus:shadow-outline ${
-                topic ? 'bg-gray-200  cursor-not-allowed' : ''
-              } `}
+              className={`shadow border-2 bg-transparent border-gray-600 text-gray-200 appearance-none  rounded w-full py-4 px-3  leading-tight
+              focus:outline-none focus:shadow-outline focus:border-white hover:border-white
+                ${topic && ' cursor-not-allowed'} `}
               id="topic"
               name="topic"
               type="text"
@@ -144,8 +149,11 @@ export default function New() {
               contentEditable={!!topic}
             />
           </div>
-          <div className="mb-2">
-            <label className="block  text-lg font-bold mb-2" htmlFor="url">
+          <div className="mb-4">
+            <label
+              className="flex pointer-events-none text-lg font-bold mb-2"
+              htmlFor="url"
+            >
               URL
             </label>
             <FormInput
@@ -164,8 +172,11 @@ export default function New() {
               </div>
             ) : null}
           </div>
-          <div className="mb-2">
-            <label className="block  text-lg font-bold mb-2" htmlFor="title">
+          <div className="mb-4">
+            <label
+              className="flex pointer-events-none  text-lg font-bold mb-2"
+              htmlFor="title"
+            >
               Article Title
             </label>
 
@@ -185,8 +196,11 @@ export default function New() {
             ) : null}
           </div>
 
-          <div className="mb-2">
-            <label className="block  text-lg font-bold mb-2" htmlFor="author">
+          <div className="mb-4">
+            <label
+              className="flex pointer-events-none text-lg font-bold mb-2"
+              htmlFor="author"
+            >
               Author
             </label>
 
@@ -195,7 +209,7 @@ export default function New() {
               id="author"
               type="text"
               name="author"
-              placeholder="Dan"
+              placeholder="Dan Abramov"
             />
             {actionData?.fieldErrors?.authorOfPost ? (
               <div className="flex ">
@@ -206,7 +220,7 @@ export default function New() {
             ) : null}
           </div>
 
-          <div className="flex items-center justify-between mt-2">
+          <div className="flex items-center justify-between mt-4">
             <button
               className=" bg-accent-pink w-full hover:brightness-110 border-2 border-solid border-accent-pink hover:border-white active:border-white text-white font-bold mt-8 py-4 px-4 rounded focus:outline-none focus:border-white focus:shadow-outline"
               type="submit"
