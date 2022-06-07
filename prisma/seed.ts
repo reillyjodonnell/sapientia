@@ -2,9 +2,20 @@ import { PrismaClient } from '@prisma/client';
 const db = new PrismaClient();
 
 async function seed() {
+  const admin = await db.user.create({
+    data: {
+      username: 'reilly',
+      // bcyrpt hash for RoryIsAwesome
+      passwordHash:
+        '$2a$12$3liRz2A2BB.IuV.9rhw8L.x41PjWs3.sigCHUQNCOBeJjcYoHHryO',
+    },
+  });
   await Promise.all(
     getData().map((item) => {
-      return db.post.create({ data: item });
+      const data = { posterId: admin.id, ...item };
+      return db.post.create({
+        data,
+      });
     })
   );
 }

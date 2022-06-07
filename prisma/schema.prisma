@@ -15,7 +15,7 @@ model User {
   createdAt    DateTime @default(now())
   username     String   @unique
   passwordHash String
-  // posts Post[]
+  posts        Post[]
 }
 
 model Like {
@@ -34,8 +34,8 @@ model Author {
 
 model Post {
   id            String  @id @default(uuid())
-  // postedBy     User     @relation(fields: [posterId], references: [id])
-  // posterId     String
+  postedBy      User    @relation(fields: [posterId], references: [id], onDelete: Cascade)
+  posterId      String
   // authorOfPost Author   @relation(fields: [authorId], references: [id])
   authorOfPost  String
   authorTwitter String?

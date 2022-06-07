@@ -77,7 +77,7 @@ type NavElementProps = {
 
 const Github = () => {
   return (
-    <div className="cursor-pointer flex justify-center items-center  px-5 py-2 rounded-xl hover:bg-stone-900 hover:text-accent-pink  opacity-80 hover:opacity-100 font-semibold focus-within:text-accent-pink ">
+    <div className="cursor-pointer flex justify-center items-center  px-5 py-2 rounded-xl  hover:text-accent-pink  opacity-80 hover:opacity-100 font-semibold focus-within:text-accent-pink ">
       <a
         href="https://github.com/reillyjodonnell/sapientia"
         target="_blank"
@@ -116,7 +116,7 @@ const Navigation = ({ mute, toggleMute }: any) => {
       {/* <NavigationElement name="Login" location="/login" /> */}
       <Github />
       <div className=" cursor-pointer ml-2 sm:ml-4 ">
-        <button className="flex border-2 border-solid border-black  active:border-stone-200 hover:border-stone-200 px-4 py-[.25rem] rounded">
+        <button className="flex border-2 border-solid border-transparent  active:border-stone-200 hover:border-stone-200 px-4 py-[.25rem] rounded">
           <span onClick={toggleMute} className="text-2xl cursor-pointer">
             {mute ? '🔇' : '🔈'}
           </span>
@@ -132,7 +132,7 @@ const Navigation = ({ mute, toggleMute }: any) => {
 const NavigationElement = ({ name, location }: NavElementProps) => {
   return (
     <Link
-      className="px-5 py-2 rounded-xl hover:bg-stone-900 hover:text-accent-pink  opacity-80 hover:opacity-100 font-semibold focus-within:text-accent-pink "
+      className="px-5 py-2 rounded-xl hover:text-accent-pink  opacity-80 hover:opacity-100 font-semibold focus-within:text-accent-pink "
       to={location}
     >
       {name}
@@ -144,7 +144,7 @@ export const Header = () => {
   const values = useSound();
   const { mute, toggleMute }: any = values;
   return (
-    <header className="px-6 lg:px-12 py-6 flex justify-between items-center text-white header  bg-black">
+    <header className="px-6 lg:px-12 py-6 flex justify-between items-center text-white header  bg-[#00000038]">
       <Logo />
 
       <Navigation mute={mute} toggleMute={toggleMute} />

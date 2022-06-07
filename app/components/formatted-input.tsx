@@ -1,4 +1,4 @@
-import { FormEventHandler, useEffect, useState } from 'react';
+import { useState } from 'react';
 interface IProps {
   htmlFor: string;
   label: string;

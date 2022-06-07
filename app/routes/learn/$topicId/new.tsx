@@ -2,6 +2,7 @@ import type { ActionFunction } from '@remix-run/node';
 import { redirect, json } from '@remix-run/node';
 import { db } from '~/utils/db.server';
 import { useActionData, useParams } from '@remix-run/react';
+import { requireUserId } from '~/utils/session.server';
 
 type ActionData = {
   formError?: string;
@@ -33,6 +34,8 @@ function validateAuthor(author: string) {
 }
 
 export let action: ActionFunction = async ({ request }) => {
+  const userId = await requireUserId(request);
+
   let form = await request.formData();
   console.log(form);
   let topic = form.get('topic');
@@ -72,9 +75,11 @@ export let action: ActionFunction = async ({ request }) => {
   // The topics in the database are lowercase
   topic = topic.toLowerCase();
 
+  const fields = { topic, url, title, authorOfPost };
+
   if (!exists) {
     await db.post.create({
-      data: { topic, url, title, authorOfPost },
+      data: { ...fields, posterId: userId },
     });
 
     return redirect(`/learn/${topic}`);

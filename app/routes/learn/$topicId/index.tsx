@@ -1,6 +1,7 @@
 import { json, LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { Link } from 'react-router-dom';
+import NewCard from '~/components/new-card';
 import TopicCard from '~/components/topic-card';
 import { useSound } from '~/contexts/sound-context';
 import { db } from '~/utils/db.server';
@@ -59,7 +60,7 @@ export default function Index() {
               const rank = index + 1;
 
               return (
-                <TopicCard
+                <NewCard
                   mute={mute}
                   author={item.authorOfPost}
                   title={item.title}
