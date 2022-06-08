@@ -126,14 +126,14 @@ export default function TopicCard({
 
   return (
     <div
-      className={`flex w-30 my-8 shadow-lg shadow-stone-900 rounded-2xl  border-4 border-solid  bg-[#6c6c6c10]   py-8 relative 
+      className={`flex w-30 my-8 shadow-lg shadow-stone-900 rounded-2xl  border-2 border-solid bg-[#6c6c6c10]   py-8 relative 
       
       ${
         upvote
           ? 'border-green-400'
           : downvote
           ? 'border-red-400'
-          : ' border-[#b7b7b78b]'
+          : ' border-[#6c6c6c24]'
       }
       
       `}

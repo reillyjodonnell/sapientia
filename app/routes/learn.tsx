@@ -13,7 +13,8 @@ export const links: LinksFunction = () => {
 export default function Learn() {
   useLayoutEffect(() => {
     document.body.style.backgroundImage =
-      'linear-gradient(to top, #1a1a1a, #19191a, #19191a, #181819, #171819, #161719, #15171a, #15161a, #15151b, #16141b, #18131c, #1a111b)';
+      'linear-gradient(to left bottom, #2e223e, #27233b, #222336, #1f2331, #1e222b, #1e222a, #1e2129, #1e2128, #1f212b, #22212e, #262130, #2a2031)';
+    // 'linear-gradient(to top, #1a1a1a, #19191a, #19191a, #181819, #171819, #161719, #15171a, #15161a, #15151b, #16141b, #18131c, #1a111b)';
   }, []);
   return (
     <>

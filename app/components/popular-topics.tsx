@@ -19,12 +19,18 @@ export default function PopularTopics() {
         {data.map((item) => {
           const lowerCaseTitle = item.name.toLowerCase();
           return (
-            <div
-              key={item.id}
-              className="flex justify-start items-center my-0.5"
-            >
+            <div key={item.id} className="flex justify-start items-center my-1">
               <Link to={`./${lowerCaseTitle}`}>
-                <div className="w-full flex cursor-pointer px-5 py-2 rounded-xl hover:bg-stone-900 hover:text-accent-pink">
+                <div
+                  className="w-full flex cursor-pointer px-5 py-2 hover:bg-stone-900 hover:text-accent-pink
+                rounded-xl
+                bg-secondary border-2 border-transparent 
+        bg-[#71717154] hover:brightness-150 hover:border-2 hover:border-accent-pink
+                
+                
+                
+                "
+                >
                   <span className="cursor-pointer text-lg ">{item.name}</span>
                 </div>
               </Link>

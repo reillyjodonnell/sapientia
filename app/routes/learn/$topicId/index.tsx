@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 import NewCard from '~/components/new-card';
 import TopicCard from '~/components/topic-card';
 import { useSound } from '~/contexts/sound-context';
+import { capitalizeFirstLetter } from '~/helper/helper';
 import { db } from '~/utils/db.server';
 
 type bothData = {
   // of type LoaderData
   data: LoaderData;
+  name: string;
 };
 
 type LoaderData = {
@@ -37,23 +39,17 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 export default function Index() {
-  const { data } = useLoaderData<bothData>();
+  const { data, name } = useLoaderData<bothData>();
+
+  const formattedTopicName = capitalizeFirstLetter(name);
 
   const { mute }: any = useSound();
 
   const { articlePosts } = data;
   return (
     <>
-      <Link to={{ pathname: './new' }}>
-        <div className="flex flex-col text-xl mt-8">
-          <button className=" px-10 py-4 rounded-lg border-4 border-white hover:border-accent-pink hover:bg-accent-pink-bg active:border-accent-pink active:bg-accent-pink-bg ">
-            + Add Article
-          </button>
-        </div>
-      </Link>
-
-      <div className="flex flex-col w-[600px] ">
-        {articlePosts.length ? (
+      <div className="flex flex-col w-[600px]">
+        {articlePosts.length >= 1 &&
           articlePosts
             .sort((a, b) => (a.points! < b.points! ? 1 : -1))
             .map((item, index) => {
@@ -71,12 +67,32 @@ export default function Index() {
                   twitterHandle={item.authorTwitter ?? ''}
                 />
               );
-            })
+            })}
+
+        {articlePosts.length ? (
+          <Link className="w-full flex" to={{ pathname: './new' }}>
+            <div className="flex content-center items-center text-center bg-[#ffffff0a] rounded-lg  p-8 border-[1px] border-solid border-stone-400 w-full flex-col text-xl mt-8">
+              <span className="text-4xl px-6 my-6">
+                Love an article that you don't see for {formattedTopicName}?
+              </span>
+              <span className="text-3xl my-6 text-gray-300">Add it below!</span>
+              <button className="my-4 px-6 py-2 rounded-lg border-4   border-accent-pink bg-accent-pink-bg ">
+                + Add Article
+              </button>
+            </div>
+          </Link>
         ) : (
-          <div className="flex flex-col justify-center items-center my-20 font-extrabold text-xl">
-            <span>😔 No articles for this topic, yet!</span>
-            <span className="mt-4">Add one above! 👆</span>
-          </div>
+          <Link className="w-full flex" to={{ pathname: './new' }}>
+            <div className="flex content-center items-center text-center bg-[#ffffff0a] rounded-lg  p-8 border-[1px] border-solid border-stone-400 w-full flex-col text-xl mt-8">
+              <span className="text-4xl px-6 my-6">
+                😔 No articles for {formattedTopicName}, yet!
+              </span>
+              <span className="text-3xl my-6">Add one below!</span>
+              <button className="my-4 px-6 py-2 rounded-lg border-4   border-accent-pink bg-accent-pink-bg ">
+                + Add Article
+              </button>
+            </div>
+          </Link>
         )}
       </div>
     </>

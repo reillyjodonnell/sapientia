@@ -576,6 +576,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 3.5rem;
 }
 
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
 .mb-6 {
   margin-bottom: 1.5rem;
 }
@@ -860,6 +865,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-width: 4px;
 }
 
+.border-\[1px\] {
+  border-width: 1px;
+}
+
 .border-solid {
   border-style: solid;
 }
@@ -943,6 +952,25 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: #b7b7b78b;
 }
 
+.border-stone-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(231 229 228 / var(--tw-border-opacity));
+}
+
+.border-stone-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(120 113 108 / var(--tw-border-opacity));
+}
+
+.border-stone-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(87 83 78 / var(--tw-border-opacity));
+}
+
+.border-\[\#6c6c6c24\] {
+  border-color: #6c6c6c24;
+}
+
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
@@ -1012,6 +1040,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .bg-\[\#6c6c6c10\] {
   background-color: #6c6c6c10;
+}
+
+.bg-\[\#ffffff0a\] {
+  background-color: #ffffff0a;
+}
+
+.bg-accent-pink-bg {
+  background-color: var(--pink-2-bg);
 }
 
 .fill-primary-text {
@@ -1317,6 +1353,36 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 
+.text-stone-500 {
+  --tw-text-opacity: 1;
+  color: rgb(120 113 108 / var(--tw-text-opacity));
+}
+
+.text-stone-300 {
+  --tw-text-opacity: 1;
+  color: rgb(214 211 209 / var(--tw-text-opacity));
+}
+
+.text-stone-400 {
+  --tw-text-opacity: 1;
+  color: rgb(168 162 158 / var(--tw-text-opacity));
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+.text-\[\#5D51CD\] {
+  --tw-text-opacity: 1;
+  color: rgb(93 81 205 / var(--tw-text-opacity));
+}
+
+.text-gray-300 {
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+
 .no-underline {
   -webkit-text-decoration-line: none;
           text-decoration-line: none;
@@ -1488,6 +1554,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .hover\:bg-accent-pink-bg:hover {
   background-color: var(--pink-2-bg);
+}
+
+.hover\:bg-\[\#71717154\]:hover {
+  background-color: #71717154;
 }
 
 .hover\:text-accent-pink:hover {
