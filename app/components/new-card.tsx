@@ -126,68 +126,56 @@ export default function NewCard({
 
   return (
     <div
-      className={`flex w-30 my-8 shadow-lg shadow-stone-900 rounded-2xl  border-4 border-solid bg-[#0000001c]  ${
+      className={`flex w-30 my-4  shadow-2xl rounded-2xl  border-4 border-solid backdrop-blur-lg bg-[#8080801c]  ${
         upvote
           ? 'border-green-400'
           : downvote
           ? 'border-red-400'
-          : ' border-stone-800'
-      } py-8 relative`}
+          : ' border-stone-400'
+      } px-6 py-8 relative`}
     >
-      <div className=" text-white flex justify-center items-center w-full ">
-        <span className="flex justify-center items-center mx-10 mb-auto text-3xl">
-          {rank}
-        </span>
-        <div>
-          <LinkToArticle>
-            <span className="flex justify-start items-center cursor-pointer hover:underline decoration-white decoration- hover:text-accent-pink mb-4 text-2xl max-w-md font-bold ">
-              {title}
-            </span>
-          </LinkToArticle>
-          <div className="flex justify-start items-center my-8">
-            <span className=" text-xl ">{author}</span>
-            {twitterHandle && (
-              <div className="hover:bg-[#1da0f258] ml-4 flex items-center justify-center p-1 rounded-full">
-                <a
-                  href={`https://twitter.com/${twitterHandle}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <svg
-                    className=" cursor-pointer"
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="24px"
-                    width="24px "
-                    fill="#1DA1F2"
-                    viewBox="0 0 24 24"
-                  >
-                    <g>
-                      <path d="M22.23 5.924a8.212 8.212 0 01-2.357.646 4.115 4.115 0 001.804-2.27 8.221 8.221 0 01-2.606.996 4.103 4.103 0 00-6.991 3.742 11.647 11.647 0 01-8.457-4.287 4.087 4.087 0 00-.556 2.063 4.1 4.1 0 001.825 3.415 4.09 4.09 0 01-1.859-.513v.052a4.104 4.104 0 003.292 4.023 4.099 4.099 0 01-1.853.07 4.11 4.11 0 003.833 2.85 8.236 8.236 0 01-5.096 1.756 8.33 8.33 0 01-.979-.057 11.617 11.617 0 006.29 1.843c7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.531a8.298 8.298 0 002.047-2.123z" />
-                    </g>
-                  </svg>
-                </a>
-              </div>
-            )}
-          </div>
-
-          <div className="flex justify-start items-center mt-8  ">
-            <div className="flex justify-center items-center border-2 border-white px-4 py-2 opacity-80 hover:opacity-100 hover:bg-zinc-900 cursor-pointer rounded-lg">
-              <LinkToArticle>
-                <span className="flex justify-start items-center">
-                  Read Article
-                </span>
-              </LinkToArticle>
+      <div className=" text-white flex flex-col justify-center items-center w-full ">
+        <div className="relative">
+          <img
+            src="https://images.pexels.com/photos/847393/pexels-photo-847393.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            className="rounded-xl"
+          />
+          <div className="absolute bg-[#00000099] top-2 right-2 flex px-6 py-4 rounded-2xl flex-col items-center justify-center ">
+            <div>
+              <svg
+                onClick={handleUpvote}
+                xmlns="http://www.w3.org/2000/svg"
+                className={`cursor-pointer ${
+                  upvote ? 'stroke-green-400' : 'stroke-white'
+                }`}
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <polyline points="6 15 12 9 18 15" />
+              </svg>
             </div>
-          </div>
-        </div>
-
-        <div className="flex py-1 mx-10 rounded-2xl flex-col items-center justify-center  ml-auto">
-          <div>
+            <span
+              className={`px-1 text-lg font-bold ${
+                upvote
+                  ? 'text-green-400'
+                  : downvote
+                  ? 'text-red-400'
+                  : 'text-white'
+              } `}
+            >
+              {count > 999 ? formattedNumber : count}
+            </span>
             <svg
-              onClick={handleUpvote}
+              onClick={handleDownvote}
               xmlns="http://www.w3.org/2000/svg"
               className={`cursor-pointer ${
-                upvote ? 'stroke-green-400' : 'stroke-white'
+                downvote ? 'stroke-red-400' : 'stroke-white'
               }`}
               width="44"
               height="44"
@@ -198,39 +186,55 @@ export default function NewCard({
               strokeLinejoin="round"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <polyline points="6 15 12 9 18 15" />
+              <polyline points="6 9 12 15 18 9" />
             </svg>
           </div>
-          <span
-            className={`px-1 text-lg font-bold ${
-              upvote
-                ? 'text-green-400'
-                : downvote
-                ? 'text-red-500'
-                : 'text-white'
-            } `}
-          >
-            {count > 999 ? formattedNumber : count}
-          </span>
-          <svg
-            onClick={handleDownvote}
-            xmlns="http://www.w3.org/2000/svg"
-            className={`cursor-pointer ${
-              downvote ? 'stroke-red-500' : 'stroke-white'
-            }`}
-            width="44"
-            height="44"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
+        </div>
+        <div className="flex w-full my-8  justify-start items-center">
+          <LinkToArticle>
+            <span className="flex justify-start items-center cursor-pointer hover:underline decoration-white decoration- hover:text-accent-pink text-3xl max-w-md font-bold ">
+              {title}
+            </span>
+          </LinkToArticle>
+        </div>
+
+        <div className="flex mb-8 w-full justify-start items-center">
+          <span className=" text-2xl ">{author}</span>
+          {twitterHandle && (
+            <div className="hover:bg-[#1da0f258] ml-4 flex items-center justify-center p-2 rounded-full">
+              <a
+                href={`https://twitter.com/${twitterHandle}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg
+                  className=" cursor-pointer"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="30px"
+                  width="30px "
+                  fill="#1DA1F2"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path d="M22.23 5.924a8.212 8.212 0 01-2.357.646 4.115 4.115 0 001.804-2.27 8.221 8.221 0 01-2.606.996 4.103 4.103 0 00-6.991 3.742 11.647 11.647 0 01-8.457-4.287 4.087 4.087 0 00-.556 2.063 4.1 4.1 0 001.825 3.415 4.09 4.09 0 01-1.859-.513v.052a4.104 4.104 0 003.292 4.023 4.099 4.099 0 01-1.853.07 4.11 4.11 0 003.833 2.85 8.236 8.236 0 01-5.096 1.756 8.33 8.33 0 01-.979-.057 11.617 11.617 0 006.29 1.843c7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.531a8.298 8.298 0 002.047-2.123z" />
+                  </g>
+                </svg>
+              </a>
+            </div>
+          )}
+        </div>
+
+        <div className="flex justify-start items-center w-full  ">
+          <div className="py-6 w-full flex justify-center items-center border-2 border-white px-4 opacity-80 hover:opacity-100 hover:bg-zinc-900 cursor-pointer rounded-xl">
+            <LinkToArticle>
+              <span className="flex text-xl font-bold justify-start items-center">
+                Read Article
+              </span>
+            </LinkToArticle>
+          </div>
         </div>
       </div>
+
       {linkError && <ErrorPopup error={linkError} />}
     </div>
   );

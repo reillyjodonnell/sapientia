@@ -60,7 +60,7 @@ export default function Index() {
               const rank = index + 1;
 
               return (
-                <NewCard
+                <TopicCard
                   mute={mute}
                   author={item.authorOfPost}
                   title={item.title}

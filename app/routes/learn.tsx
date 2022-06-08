@@ -4,12 +4,17 @@ import { links as mainContentLinks } from '~/components/main-content';
 import PopularTopics from '~/components/popular-topics';
 import Search from '~/components/search';
 import stylesUrl from '~/styles/index.css';
+import { useLayoutEffect } from 'react';
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: stylesUrl }];
 };
 
 export default function Learn() {
+  useLayoutEffect(() => {
+    document.body.style.backgroundImage =
+      'linear-gradient(to top, #1a1a1a, #19191a, #19191a, #181819, #171819, #161719, #15171a, #15161a, #15151b, #16141b, #18131c, #1a111b)';
+  }, []);
   return (
     <>
       <div className="flex content-center px-6 lg:px-14 my-10 items-start">

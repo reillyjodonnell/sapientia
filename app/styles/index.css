@@ -62,6 +62,21 @@ body {
     #6a498a,
     #934d9a
   );
+  background-image: linear-gradient(
+    to right top,
+    #1a1a1a,
+    #19191a,
+    #19191a,
+    #181819,
+    #171819,
+    #191e24,
+    #1b2430,
+    #1e2a3c,
+    #2d3759,
+    #464173,
+    #6a498a,
+    #934d9a
+  );
   width: 100%;
   min-height: 100vh;
   display: flex;
