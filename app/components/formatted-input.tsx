@@ -40,7 +40,7 @@ export default function FormattedInput({
       <div
         className={`flex w-full border-2 border-solid  ${
           error ? 'border-red-400' : 'border-gray-600'
-        } focus-within:border-white  bg-black rounded-lg hover:shadow-2xl relative`}
+        } focus-within:border-white  rounded-lg hover:shadow-2xl relative`}
       >
         <input
           id={id}
@@ -55,7 +55,7 @@ export default function FormattedInput({
               : type
           }
           placeholder={placeholder}
-          className="flex w-full px-2 py-4 text-xl  bg-black rounded-lg hover:shadow-2xl relative  "
+          className="flex w-full px-2 py-4 text-xl  bg-transparent rounded-lg hover:shadow-2xl relative  "
         />
         {toggleShowHide && (
           <div className="absolute  inset-y-0 right-0 pr-3 flex items-center ">

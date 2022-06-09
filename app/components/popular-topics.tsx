@@ -22,7 +22,7 @@ export default function PopularTopics() {
             <div key={item.id} className="flex justify-start items-center my-1">
               <Link to={`./${lowerCaseTitle}`}>
                 <div
-                  className="w-full flex cursor-pointer px-5 py-2 hover:bg-stone-900 hover:text-accent-pink
+                  className="w-full flex cursor-pointer px-5 py-2 
                 rounded-xl
                 bg-secondary border-2 border-transparent 
         bg-[#71717154] hover:brightness-150 hover:border-2 hover:border-accent-pink

@@ -72,10 +72,12 @@ export default function Index() {
         {articlePosts.length ? (
           <Link className="w-full flex" to={{ pathname: './new' }}>
             <div className="flex content-center items-center text-center bg-[#ffffff0a] rounded-lg  p-8 border-[1px] border-solid border-stone-400 w-full flex-col text-xl mt-8">
-              <span className="text-4xl px-6 my-6">
+              <span className="text-4xl px-6 my-6 font-bold">
                 Love an article that you don't see for {formattedTopicName}?
               </span>
-              <span className="text-3xl my-6 text-gray-300">Add it below!</span>
+              <span className="text-3xl my-6 text-gray-300 font-semibold">
+                Add it below!
+              </span>
               <button className="my-4 px-6 py-2 rounded-lg border-4   border-accent-pink bg-accent-pink-bg ">
                 + Add Article
               </button>

@@ -81,7 +81,6 @@ export let action: ActionFunction = async ({ request }) => {
     await db.post.create({
       data: { ...fields, posterId: userId },
     });
-
     return redirect(`/learn/${topic}`);
   } else {
     throw new Error('Article already exists');
