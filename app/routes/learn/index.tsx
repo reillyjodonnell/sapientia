@@ -9,6 +9,9 @@ export const links: LinksFunction = () => {
 export default function Index() {
   return (
     <>
+      <span className="mt-20 flex justify-center items-center text-4xl">
+        Want to learn something new?
+      </span>
       <span className="mt-20 flex justify-center items-center text-3xl">
         Choose a topic ⬅️
       </span>

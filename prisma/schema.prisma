@@ -11,17 +11,34 @@ datasource db {
 }
 
 model User {
-  id           String   @id @default(uuid())
-  createdAt    DateTime @default(now())
-  username     String   @unique
+  id           String    @id @default(uuid())
+  createdAt    DateTime  @default(now())
+  username     String    @unique
   passwordHash String
   posts        Post[]
+  likes        Like[]
+  dislikes     Dislike[]
+
+  // liked        Post[]   @relation("likedPosts", references: [id])
+  // disliked     Post[]   @relation("dislikedPosts", references: [id])
+
 }
 
 model Like {
-  id     String @id @default(uuid())
+  id     Int    @id @default(autoincrement())
+  user   User   @relation(fields: [userId], references: [id])
   userId String
   postId String
+  post   Post   @relation(fields: [postId], references: [id])
+
+}
+
+model Dislike {
+  id     Int    @id @default(autoincrement())
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+  postId String
+  post   Post   @relation(fields: [postId], references: [id])
 
 }
 
@@ -33,14 +50,25 @@ model Author {
 }
 
 model Post {
-  id            String  @id @default(uuid())
-  postedBy      User    @relation(fields: [posterId], references: [id], onDelete: Cascade)
+  id            String    @id @default(uuid())
+  postedBy      User      @relation(fields: [posterId], references: [id], onDelete: Cascade)
   posterId      String
   // authorOfPost Author   @relation(fields: [authorId], references: [id])
   authorOfPost  String
   authorTwitter String?
   title         String
   url           String
-  points        Int?    @default(0)
-  topic         String
+  points        Int?      @default(0)
+  topic         Topic[]
+  likes         Like[]
+  dislikes      Dislike[]
+
+  // likedBy       User[]  @relation(name: "likedUser", references: [id])
+  // dislikedBy    User[]  @relation(name: "dislikedUser", references: [id])
+}
+
+model Topic {
+  id    Int    @id @default(autoincrement())
+  name  String
+  posts Post[]
 }
