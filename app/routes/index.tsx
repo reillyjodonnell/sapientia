@@ -1,13 +1,15 @@
 import stylesUrl from '~/styles/index.css';
 import type { LinksFunction } from '@remix-run/node';
 import MainContent from '~/components/main-content';
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useEffect } from 'react';
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesUrl },
 ];
 export default function Index() {
-  useLayoutEffect(() => {
+  const useIsomorphicLayoutEffect =
+    typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+  useIsomorphicLayoutEffect(() => {
     document.body.style.backgroundImage = `linear-gradient(
     to right top,
     #1a1a1a,
@@ -32,21 +34,6 @@ export default function Index() {
       }}
     >
       <MainContent />
-      {/* <SoundProvider>
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Motd />
-        </div>
-        <Header />
-        <Outlet />
-        // 
-      </SoundProvider> */}
     </div>
   );
 }

@@ -5,13 +5,15 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from '@remix-run/react';
-import type { LinksFunction } from '@remix-run/node';
+import { json, LinksFunction, LoaderFunction } from '@remix-run/node';
 import type { MetaFunction } from '@remix-run/node';
 import styles from './styles/tailwind.css';
 import SoundProvider from './contexts/sound-context';
 import Motd from './components/motd';
 import { Header } from './components/header';
+import { getUser } from './utils/session.server';
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: styles }];
@@ -23,7 +25,22 @@ export const meta: MetaFunction = () => ({
   viewport: 'width=device-width,initial-scale=1',
 });
 
+type User = {
+  id: string;
+  username: string;
+};
+
+export const loader: LoaderFunction = async ({ request }) => {
+  console.log('EXECUTING LOADER FUNCTION');
+  const user = await getUser(request);
+
+  console.log(user);
+
+  return json(user);
+};
+
 export default function App() {
+  const data = useLoaderData<User>();
   return (
     <html lang="en">
       <head>
@@ -48,7 +65,7 @@ export default function App() {
             >
               <Motd />
             </div>
-            <Header />
+            <Header user={data} />
             <Outlet />
             <ScrollRestoration />
             <Scripts />

@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import FormattedInput from '~/components/formatted-input';
-import HighlightableTextInput from '~/components/highlightable-text-input';
 import { createUserSession, login } from '~/utils/session.server';
 import type { ActionFunction, LinksFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
-import { Link, useSearchParams } from '@remix-run/react';
+import { Link, useActionData, useSearchParams } from '@remix-run/react';
 import stylesUrl from '~/styles/index.css';
 
 export const links: LinksFunction = () => {
@@ -23,19 +22,30 @@ function validatePassword(password: unknown) {
   }
 }
 
-const badRequest = (data: any) => {
-  json(data, { status: 400 });
+type ActionData = {
+  fieldErrors?: {
+    username?: string;
+    password?: string;
+  };
+  formError?: string;
+  fields?: {
+    username?: string;
+    password?: string;
+  };
+};
+
+const badRequest = (data: ActionData) => {
+  return json(data, { status: 400 });
 };
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData();
-  console.log(form);
-  const password = form.get('password');
-  const username = form.get('username');
+  const password = form.get('password')?.toString();
+  const username = form.get('username')?.toString();
 
   const fields = { username, password };
 
-  console.log(username, password);
+  console.log(fields);
 
   if (typeof username !== 'string' || typeof password !== 'string') {
     return badRequest({
@@ -43,13 +53,26 @@ export const action: ActionFunction = async ({ request }) => {
     });
   }
 
+  const fieldErrors = {
+    username: validateUsername(username),
+    password: validatePassword(password),
+  };
+  if (Object.values(fieldErrors).some(Boolean))
+    return badRequest({ fieldErrors, fields });
+
   const user = await login({ username, password });
 
   console.log(user);
 
+  console.log(!user);
+
   // That isn't a valid account with credentials supplied
   if (!user) {
-    return badRequest({ fields, formError: 'Username/ password is incorrect' });
+    console.log('Executing here');
+    return badRequest({
+      fields,
+      formError: 'Username/ password is incorrect',
+    });
   }
 
   // it is a valid user
@@ -57,6 +80,7 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function Login() {
+  const data = useActionData<ActionData>();
   // const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
   const [searchParams] = useSearchParams();
@@ -65,6 +89,13 @@ export default function Login() {
     <div className="h-full flex flex-col justify-center items-center m-10">
       <div className="flex flex-col justify-center items-center px-12 ">
         <span className="text-4xl font-bold mb-10">Login</span>
+        {data?.formError && (
+          <div className="w-full p-4 my-4 bg-[#ef444445] flex justify-center items-center border-2 border-solid border-red-500  ">
+            <span className="text-xl text-red-500">
+              {data?.formError ?? 'Invalid Email or password'}
+            </span>
+          </div>
+        )}
         <form method="post">
           <input
             type="hidden"
@@ -79,7 +110,8 @@ export default function Login() {
             type="text"
             name="username"
             placeholder="Darth Sidius"
-            hasError={error}
+            defaultValue={data?.fields?.username}
+            hasError={!!data?.fieldErrors?.username}
             errorMessage="invalid username"
           />
           <FormattedInput
@@ -91,7 +123,8 @@ export default function Login() {
             type="password"
             placeholder="HanShotFirst"
             toggleShowHide={true}
-            hasError={error}
+            defaultValue={data?.fields?.password}
+            hasError={!!data?.fieldErrors?.password}
             errorMessage="invalid pass"
           />
           <button className="flex mr-auto text-neutral-300 text-md hover:text-accent-pink cursor-pointer">

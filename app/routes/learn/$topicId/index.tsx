@@ -75,23 +75,23 @@ export default function Index() {
               <span className="text-4xl px-6 my-6 font-bold">
                 Love an article that you don't see for {formattedTopicName}?
               </span>
-              <span className="text-3xl my-6 text-gray-300 font-semibold">
+              <span className="text-3xl my-4 text-gray-300 font-semibold">
                 Add it below!
               </span>
-              <button className="my-4 px-6 py-2 rounded-lg border-4   border-accent-pink bg-accent-pink-bg ">
-                + Add Article
+              <button className="my-6 px-6 py-2 rounded-lg border-4   border-accent-pink bg-accent-pink-bg transition hover:brightness-75">
+                Add Article
               </button>
             </div>
           </Link>
         ) : (
           <Link className="w-full flex" to={{ pathname: './new' }}>
-            <div className="flex content-center items-center text-center bg-[#ffffff0a] rounded-lg  p-8 border-[1px] border-solid border-stone-400 w-full flex-col text-xl mt-8">
+            <div className="flex cursor-default content-center items-center text-center bg-[#ffffff0a] rounded-lg  p-8 border-[1px] border-solid border-stone-400 w-full flex-col text-xl mt-8">
               <span className="text-4xl px-6 my-6">
                 😔 No articles for {formattedTopicName}, yet!
               </span>
-              <span className="text-3xl my-6">Add one below!</span>
-              <button className="my-4 px-6 py-2 rounded-lg border-4   border-accent-pink bg-accent-pink-bg ">
-                + Add Article
+              <span className="text-3xl my-4">Add one below!</span>
+              <button className="my-6 px-6 py-2 rounded-lg border-4   border-accent-pink bg-accent-pink-bg transition hover:brightness-75">
+                Add Article
               </button>
             </div>
           </Link>

@@ -11,6 +11,7 @@ interface IProps {
   hasError?: boolean;
   errorMessage?: string;
   onChange?: any;
+  defaultValue?: string;
 }
 
 export default function FormattedInput({
@@ -25,6 +26,7 @@ export default function FormattedInput({
   hasError = false,
   errorMessage = 'Invalid Email',
   onChange,
+  defaultValue,
 }: IProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(hasError);
@@ -55,6 +57,7 @@ export default function FormattedInput({
               : type
           }
           placeholder={placeholder}
+          defaultValue={defaultValue}
           className="flex w-full px-2 py-4 text-xl  bg-transparent rounded-lg hover:shadow-2xl relative  "
         />
         {toggleShowHide && (

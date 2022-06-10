@@ -30,7 +30,6 @@ export default function SoundProvider({ children }: any) {
 
   // Everytime the value of mute changes override the local storage value
   useEffect(() => {
-    console.log(`mute is ${mute}`);
     localStorage.setItem('mute', JSON.stringify(mute));
   }, [mute]);
 

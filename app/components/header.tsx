@@ -1,9 +1,9 @@
 import style from '../styles/header.css';
-import type { LinksFunction } from '@remix-run/node';
-import { Link } from '@remix-run/react';
+import { json, LinksFunction, LoaderFunction } from '@remix-run/node';
+import { Link, useLoaderData } from '@remix-run/react';
 import { SoundContextState, useSound } from '~/contexts/sound-context';
-import { MouseEventHandler } from 'react';
-
+import { getUser } from '~/utils/session.server';
+import { capitalizeFirstLetter } from '~/helper/helper';
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: style }];
 };
@@ -18,57 +18,31 @@ const Logo = () => {
   );
 };
 
-const LanguageSelector = () => {
-  return (
-    <div className=" cursor-pointer ml-2 sm:ml-4 ">
-      <button className="p-1.5 flex justify-center items-center place-items-center border border-solid border-white/60  rounded-md drop-shadow-md  focus-within::bg-slate-50/5 focus-within::border-white hover:bg-slate-50/5 hover:border-white ">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="icon icon-tabler icon-tabler-language h-6 w-6 stroke-white"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M4 5h7" />
-          <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-          <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-          <path d="M12 20l4 -9l4 9" />
-          <path d="M19.1 18h-6.2" />
-        </svg>
-        <span>English</span>
-      </button>
-    </div>
-  );
-};
-
-const NavigationLoginElement = () => {
-  return (
-    <div className=" cursor-pointer ml-2 sm:ml-4 ">
-      <Link to="/login">
-        <button className="px-6 py-2  flex justify-center items-center place-items-center border border-solid border-white/60  rounded-md drop-shadow-md  focus-within::bg-slate-50/5 focus-within::border-white hover:bg-slate-50/5 hover:border-white ">
-          {/* <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="icon icon-tabler icon-tabler-language h-6 w-6 stroke-white"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="#ffffff"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-          <path d="M20 12h-13l3 -3m0 6l-3 -3" />
-        </svg> */}
-          <span>Login</span>
-        </button>
-      </Link>
-    </div>
-  );
-};
+// const LanguageSelector = () => {
+//   return (
+//     <div className=" cursor-pointer ml-2 sm:ml-4 ">
+//       <button className="p-1.5 flex justify-center items-center place-items-center border border-solid border-white/60  rounded-md drop-shadow-md  focus-within::bg-slate-50/5 focus-within::border-white hover:bg-slate-50/5 hover:border-white ">
+//         <svg
+//           xmlns="http://www.w3.org/2000/svg"
+//           className="icon icon-tabler icon-tabler-language h-6 w-6 stroke-white"
+//           viewBox="0 0 24 24"
+//           strokeWidth="1.5"
+//           fill="none"
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
+//         >
+//           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+//           <path d="M4 5h7" />
+//           <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+//           <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+//           <path d="M12 20l4 -9l4 9" />
+//           <path d="M19.1 18h-6.2" />
+//         </svg>
+//         <span>English</span>
+//       </button>
+//     </div>
+//   );
+// };
 
 type NavElementProps = {
   name: string;
@@ -103,12 +77,8 @@ const Github = () => {
     </div>
   );
 };
-// interface INavigation {
-//   mute: boolean;
-//   toggleMute: MouseEventHandler<HTMLSpanElement>;
-// }
 
-const Navigation = ({ mute, toggleMute }: any) => {
+const Navigation = ({ mute, toggleMute, user }: any) => {
   return (
     <nav className="flex justify-center items-center">
       <NavigationElement name="Topics" location="/learn" />
@@ -124,7 +94,19 @@ const Navigation = ({ mute, toggleMute }: any) => {
       </div>
 
       {/* <LanguageSelector /> */}
-      <NavigationLoginElement />
+      <div className=" cursor-pointer ml-2 sm:ml-4 ">
+        {user ? (
+          <button className="px-6 py-2  flex justify-center items-center place-items-center border border-solid border-white/60  rounded-md drop-shadow-md  focus-within::bg-slate-50/5 focus-within::border-white hover:bg-slate-50/5 hover:border-white ">
+            <span>{capitalizeFirstLetter(user.username)}</span>
+          </button>
+        ) : (
+          <Link to="/login">
+            <button className="px-6 py-2  flex justify-center items-center place-items-center border border-solid border-white/60  rounded-md drop-shadow-md  focus-within::bg-slate-50/5 focus-within::border-white hover:bg-slate-50/5 hover:border-white ">
+              <span>Login</span>
+            </button>
+          </Link>
+        )}
+      </div>
     </nav>
   );
 };
@@ -140,14 +122,14 @@ const NavigationElement = ({ name, location }: NavElementProps) => {
   );
 };
 
-export const Header = () => {
+export const Header = ({ user }: any) => {
   const values = useSound();
   const { mute, toggleMute }: any = values;
   return (
     <header className="px-6 lg:px-12 py-6 flex justify-between items-center text-white header  bg-[#00000038]">
       <Logo />
 
-      <Navigation mute={mute} toggleMute={toggleMute} />
+      <Navigation user={user} mute={mute} toggleMute={toggleMute} />
     </header>
   );
 };

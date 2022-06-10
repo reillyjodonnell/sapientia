@@ -192,7 +192,7 @@ export default function TopicCard({
               xmlns="http://www.w3.org/2000/svg"
               className={`cursor-pointer ${
                 upvote ? 'stroke-green-400' : 'stroke-white'
-              }`}
+              } hover:scale-110 transition `}
               width="44"
               height="44"
               viewBox="0 0 24 24"
@@ -212,7 +212,7 @@ export default function TopicCard({
                 : downvote
                 ? 'text-red-500'
                 : 'text-white'
-            } `}
+            }  `}
           >
             {count > 999 ? formattedNumber : count}
           </span>
@@ -221,7 +221,11 @@ export default function TopicCard({
             xmlns="http://www.w3.org/2000/svg"
             className={`cursor-pointer ${
               downvote ? 'stroke-red-500' : 'stroke-white'
-            }`}
+            }
+            hover:scale-110 transition 
+            
+            
+            `}
             width="44"
             height="44"
             viewBox="0 0 24 24"
