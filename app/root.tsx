@@ -31,11 +31,8 @@ type User = {
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
-  console.log('EXECUTING LOADER FUNCTION');
   const user = await getUser(request);
-
   console.log(user);
-
   return json(user);
 };
 

@@ -74,6 +74,7 @@ export async function createUserSession(userId: string, route: string) {
 export async function getUser(request: Request) {
   const userId = await getUserId(request);
   console.log(`userId is ${userId}`);
+
   if (typeof userId !== 'string') {
     return null;
   }
@@ -83,6 +84,7 @@ export async function getUser(request: Request) {
       where: { id: userId },
       select: { id: true, username: true },
     });
+    console.log(user);
     return user;
   } catch {
     throw logout(request);

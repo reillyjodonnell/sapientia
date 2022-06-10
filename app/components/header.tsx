@@ -125,6 +125,7 @@ const NavigationElement = ({ name, location }: NavElementProps) => {
 export const Header = ({ user }: any) => {
   const values = useSound();
   const { mute, toggleMute }: any = values;
+  console.log(user);
   return (
     <header className="px-6 lg:px-12 py-6 flex justify-between items-center text-white header  bg-[#00000038]">
       <Logo />

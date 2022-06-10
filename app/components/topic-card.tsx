@@ -1,3 +1,4 @@
+import { Form } from '@remix-run/react';
 import { useState, useEffect } from 'react';
 import useSound from 'use-sound';
 import plop from '../../public/sounds/plop-trimmed.mp3';
@@ -9,6 +10,9 @@ export interface baseArticle {
   upvotes: number;
   image?: string;
   twitterHandle?: string;
+  getPostUrl: Function;
+  topic: string;
+  id: string;
 }
 interface Article extends baseArticle {
   rank?: number;
@@ -24,6 +28,9 @@ export default function TopicCard({
   image,
   twitterHandle,
   mute,
+  getPostUrl,
+  topic,
+  id,
 }: Article) {
   const [upvote, setUpvote] = useState(false);
   const [downvote, setDownvote] = useState(false);
@@ -49,6 +56,7 @@ export default function TopicCard({
   }, [link]);
 
   const handleUpvote = () => {
+    getPostUrl(link);
     if (!upvote) {
       upvoteSound();
 
@@ -185,8 +193,12 @@ export default function TopicCard({
           </div>
         </div>
 
-        <div className="flex py-1 mx-10 rounded-2xl flex-col items-center justify-center  ml-auto">
-          <div>
+        <Form
+          className="flex py-1 mx-10 rounded-2xl flex-col items-center justify-center  ml-auto"
+          method="post"
+        >
+          <input type={'hidden'} name="id" value={id} />
+          <button type="submit" value="upvote" name="_action">
             <svg
               onClick={handleUpvote}
               xmlns="http://www.w3.org/2000/svg"
@@ -204,7 +216,8 @@ export default function TopicCard({
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <polyline points="6 15 12 9 18 15" />
             </svg>
-          </div>
+          </button>
+
           <span
             className={`px-1 text-lg font-bold ${
               upvote
@@ -216,28 +229,30 @@ export default function TopicCard({
           >
             {count > 999 ? formattedNumber : count}
           </span>
-          <svg
-            onClick={handleDownvote}
-            xmlns="http://www.w3.org/2000/svg"
-            className={`cursor-pointer ${
-              downvote ? 'stroke-red-500' : 'stroke-white'
-            }
+          <button type="submit" value="downvote" name="_action">
+            <svg
+              onClick={handleDownvote}
+              xmlns="http://www.w3.org/2000/svg"
+              className={`cursor-pointer ${
+                downvote ? 'stroke-red-500' : 'stroke-white'
+              }
             hover:scale-110 transition 
             
             
             `}
-            width="44"
-            height="44"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
-        </div>
+              width="44"
+              height="44"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+        </Form>
       </div>
       {linkError && <ErrorPopup error={linkError} />}
     </div>

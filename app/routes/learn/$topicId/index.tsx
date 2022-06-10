@@ -1,4 +1,4 @@
-import { json, LoaderFunction } from '@remix-run/node';
+import { ActionFunction, json, LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { Link } from 'react-router-dom';
 import NewCard from '~/components/new-card';
@@ -21,8 +21,24 @@ type LoaderData = {
     title: string;
     url: string;
     points?: number | null;
-    topic: string;
+    topicName: string;
   }>;
+};
+
+export const action: ActionFunction = async ({ request }) => {
+  const formData = await request.formData();
+  const { id, _action } = Object.fromEntries(formData);
+
+  console.log(_action);
+  if (_action === 'downvote') {
+    // Set in DB
+    console.log(`Disliked post with id ${id}`);
+  }
+  if (_action === 'upvote') {
+    // Set in DB
+    console.log(`Liked post with id: ${id}`);
+  }
+  return null;
 };
 
 export const loader: LoaderFunction = async ({ params }) => {
@@ -31,7 +47,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   const data: LoaderData = {
     articlePosts: await db.post.findMany({
       where: {
-        topic: name,
+        topicName: name,
       },
     }),
   };
@@ -45,6 +61,10 @@ export default function Index() {
 
   const { mute }: any = useSound();
 
+  function getPostUrl(url: string) {
+    console.log(url);
+  }
+
   const { articlePosts } = data;
   return (
     <>
@@ -57,11 +77,14 @@ export default function Index() {
 
               return (
                 <TopicCard
+                  topic={name}
+                  getPostUrl={getPostUrl}
                   mute={mute}
                   author={item.authorOfPost}
                   title={item.title}
                   link={item.url}
                   upvotes={item.points ?? 0}
+                  id={item.id}
                   key={item.id}
                   rank={rank}
                   twitterHandle={item.authorTwitter ?? ''}
