@@ -45,8 +45,6 @@ export const action: ActionFunction = async ({ request }) => {
 
   const fields = { username, password };
 
-  console.log(fields);
-
   if (typeof username !== 'string' || typeof password !== 'string') {
     return badRequest({
       formError: `Form not submitted correctly.`,
@@ -62,13 +60,8 @@ export const action: ActionFunction = async ({ request }) => {
 
   const user = await login({ username, password });
 
-  console.log(user);
-
-  console.log(!user);
-
   // That isn't a valid account with credentials supplied
   if (!user) {
-    console.log('Executing here');
     return badRequest({
       fields,
       formError: 'Username/ password is incorrect',

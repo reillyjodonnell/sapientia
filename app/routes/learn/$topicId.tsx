@@ -1,10 +1,6 @@
 import type { LinksFunction, LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { Outlet, useLoaderData } from '@remix-run/react';
-import TopicCard, { baseArticle } from '~/components/topic-card';
-import { db } from '~/utils/db.server';
-import { Link } from '@remix-run/react';
-import { useSound } from '~/contexts/sound-context';
 import stylesUrl from '~/styles/index.css';
 
 export const links: LinksFunction = () => {
@@ -34,10 +30,6 @@ export default function Learn() {
         >
           {name}
         </span>
-        {/* TODO: MOVE THE AUDIO TOGGLE TO THE NAV */}
-        {/* <span onClick={toggleAudio} className="ml-12 text-2xl cursor-pointer">
-          {mute ? '🔇' : '🔈'}
-        </span> */}
       </div>
       <div className="flex flex-col content-center items-center w-full">
         <Outlet />

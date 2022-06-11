@@ -37,7 +37,6 @@ export let action: ActionFunction = async ({ request }) => {
   const userId = await requireUserId(request);
 
   let form = await request.formData();
-  console.log(form);
   let topic = form.get('topic');
   let url = form.get('url');
   let title = form.get('title');
@@ -67,7 +66,7 @@ export let action: ActionFunction = async ({ request }) => {
   // Validation for existing url in database
   const exists = await db.post.findFirst({
     where: {
-      topic: topic,
+      topicName: topic,
       url: url,
     },
   });
@@ -75,7 +74,7 @@ export let action: ActionFunction = async ({ request }) => {
   // The topics in the database are lowercase
   topic = topic.toLowerCase();
 
-  const fields = { topic, url, title, authorOfPost };
+  const fields = { topicName: topic, url, title, authorOfPost };
 
   if (!exists) {
     await db.post.create({
@@ -89,7 +88,6 @@ export let action: ActionFunction = async ({ request }) => {
 
 export default function New() {
   let actionData = useActionData<ActionData>();
-  console.log(actionData);
   const params = useParams();
   let topic = params.topicId;
   topic = topic && topic[0].toUpperCase() + topic.substring(1);
@@ -127,8 +125,6 @@ export default function New() {
       />
     );
   }
-
-  // We need to show the word as capitalized
 
   return (
     <>

@@ -34,7 +34,6 @@ export default function SoundProvider({ children }: any) {
   }, [mute]);
 
   function toggleMute() {
-    console.log(`toggling from mute = ${mute}`);
     setMute((prev) => !prev);
   }
 

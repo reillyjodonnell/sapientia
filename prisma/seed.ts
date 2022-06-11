@@ -22,8 +22,6 @@ async function seed() {
     })
   );
 
-  console.log(topic);
-
   const reactObject = topic.filter((item) => {
     return item.name === 'react';
   });

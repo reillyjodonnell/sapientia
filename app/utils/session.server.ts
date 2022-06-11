@@ -36,6 +36,7 @@ export async function requireUserId(
 ) {
   const session = await getUserSession(request);
   const userId = session.get('userId');
+  console.log(`requireUserId: ${userId}`);
   if (!userId || typeof userId !== 'string') {
     const searchParams = new URLSearchParams([['redirectTo', redirectTo]]);
     throw redirect(`/login?${searchParams}`);
@@ -63,6 +64,7 @@ const storage = createCookieSessionStorage({
 });
 export async function createUserSession(userId: string, route: string) {
   const session = await storage.getSession();
+
   session.set('userId', userId);
   return redirect(route, {
     headers: {
@@ -73,7 +75,6 @@ export async function createUserSession(userId: string, route: string) {
 
 export async function getUser(request: Request) {
   const userId = await getUserId(request);
-  console.log(`userId is ${userId}`);
 
   if (typeof userId !== 'string') {
     return null;
@@ -84,7 +85,6 @@ export async function getUser(request: Request) {
       where: { id: userId },
       select: { id: true, username: true },
     });
-    console.log(user);
     return user;
   } catch {
     throw logout(request);

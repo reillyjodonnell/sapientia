@@ -6,11 +6,13 @@ import TopicCard from '~/components/topic-card';
 import { useSound } from '~/contexts/sound-context';
 import { capitalizeFirstLetter } from '~/helper/helper';
 import { db } from '~/utils/db.server';
+import { getUserId, requireUserId } from '~/utils/session.server';
 
 type bothData = {
   // of type LoaderData
   data: LoaderData;
   name: string;
+  likedPostIds: Array<String>;
 };
 
 type LoaderData = {
@@ -26,17 +28,60 @@ type LoaderData = {
 };
 
 export const action: ActionFunction = async ({ request }) => {
+  // Todo make sure the user is logged in and pass their userId below
+  const userId = await requireUserId(request);
+
   const formData = await request.formData();
   const { id, _action } = Object.fromEntries(formData);
 
-  console.log(_action);
+  const fields = {
+    postId: id.toString(),
+    userId: userId.toString(),
+    // userId: 'f736fee2-61f2-497e-abc9-05ceee87f78c',
+  };
+
+  const hasLiked = await db.like.findFirst({
+    where: {
+      userId: fields.userId,
+      postId: fields.postId,
+    },
+  });
+
+  const hasDisliked = await db.dislike.findFirst({
+    where: {
+      userId: fields.userId,
+      postId: fields.postId,
+    },
+  });
+
   if (_action === 'downvote') {
-    // Set in DB
-    console.log(`Disliked post with id ${id}`);
+    // make sure they haven't already disliked
+    if (!hasDisliked) {
+      console.log({ ...fields });
+      await db.dislike.create({
+        data: { ...fields },
+      });
+    }
+    // make sure it's not liked if(...)
   }
   if (_action === 'upvote') {
-    // Set in DB
-    console.log(`Liked post with id: ${id}`);
+    // make sure they haven't already liked
+    if (!hasLiked) {
+      console.log({ ...fields });
+
+      await db.like.create({
+        data: { ...fields },
+      });
+    }
+
+    // if(hasLiked){
+    //   await db.like.delete({
+    //     where: {
+    //       userId: fields.userId,
+    //       postId: fields.postId,
+    //     },
+    //   });
+    // make sure it's not disliked if(....)
   }
   return null;
 };
@@ -45,25 +90,83 @@ export const loader: LoaderFunction = async ({ params }) => {
   const name = params.topicId;
 
   const data: LoaderData = {
+    // If there's a user check if they've liked/ disliked any of the posts
     articlePosts: await db.post.findMany({
       where: {
         topicName: name,
       },
     }),
   };
-  return json({ data, name });
+
+  const postIds = data.articlePosts.map(({ id, ...rest }) => {
+    return id;
+  });
+
+  type LikedPosts = {
+    id: number;
+    userId: string;
+    postId: string;
+  };
+
+  type LikePostsArray = {
+    likedPosts: Array<LikedPosts> | null;
+  };
+
+  const likedPostsArray: LikePostsArray = {
+    likedPosts: await db.like.findMany({
+      where: {
+        postId: {
+          in: postIds,
+        },
+      },
+    }),
+  };
+
+  // We only care about the postId
+  const likedPostIds = likedPostsArray.likedPosts?.map(
+    ({ postId, ...rest }: LikedPosts) => {
+      return postId;
+    }
+  );
+
+  type DislikedPosts = {
+    id: number;
+    userId: string;
+    postId: string;
+  };
+
+  type DislikePostsArray = {
+    dislikedPosts: Array<DislikedPosts> | null;
+  };
+
+  const dislikedPostsArray: DislikePostsArray = {
+    dislikedPosts: await db.dislike.findMany({
+      where: {
+        postId: {
+          in: postIds,
+        },
+      },
+    }),
+  };
+
+  // We only care about the postId
+  const dislikedPostIds = dislikedPostsArray.dislikedPosts?.map(
+    ({ postId, ...rest }: DislikedPosts) => {
+      return postId;
+    }
+  );
+
+  return json({ dislikedPostIds, likedPostIds, data, name });
 };
 
 export default function Index() {
-  const { data, name } = useLoaderData<bothData>();
+  const { likedPostIds, data, name } = useLoaderData<bothData>();
 
   const formattedTopicName = capitalizeFirstLetter(name);
 
   const { mute }: any = useSound();
 
-  function getPostUrl(url: string) {
-    console.log(url);
-  }
+  function getPostUrl(url: string) {}
 
   const { articlePosts } = data;
   return (
@@ -85,6 +188,7 @@ export default function Index() {
                   link={item.url}
                   upvotes={item.points ?? 0}
                   id={item.id}
+                  liked={likedPostIds.includes(item.id)}
                   key={item.id}
                   rank={rank}
                   twitterHandle={item.authorTwitter ?? ''}

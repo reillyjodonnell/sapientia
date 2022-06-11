@@ -23,7 +23,7 @@ export default function Learn() {
       <div className="flex content-center px-6 lg:px-14 my-10 items-start">
         <div className="flex flex-col">
           <div className="mb-4">
-            <Search size="medium" handleForm={(e: any) => console.log(e)} />
+            <Search size="medium" />
           </div>
           <div className="flex mt-4">
             <PopularTopics />

@@ -17,12 +17,6 @@ export const MainContent = () => {
     // });
   };
 
-  const handleForm = (e: any) => {
-    e.preventDefault();
-    const text = e.target[0].value;
-    console.log(text);
-  };
-
   const LeftContent = () => {
     return (
       <div className="w-3/5 ">
@@ -97,7 +91,7 @@ export const MainContent = () => {
   const RightContent = () => {
     return (
       <div className="flex flex-col w-2/5 px-16">
-        <Search handleForm={handleForm} />
+        <Search />
         <ChooseATopic />
       </div>
     );

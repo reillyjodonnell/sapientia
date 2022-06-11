@@ -32,7 +32,6 @@ app.all(
 );
 
 app.get('/servercode', (req, res) => {
-  console.log('SERVER CODE EXECUTED!');
   res.send('BOOM');
 });
 

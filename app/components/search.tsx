@@ -2,20 +2,18 @@ import { useRef, useCallback, useEffect } from 'react';
 import type { ActionFunction } from '@remix-run/node';
 import { useNavigate } from 'react-router-dom';
 interface IProps {
-  handleForm: Function;
   size?: string;
 }
 
 export let action: ActionFunction = async ({ request }) => {
   let form = await request.formData();
   let topic = form.get('topic');
-  console.log(topic);
   setTimeout(() => {
     return null;
   }, 1200000);
 };
 
-export default function Search({ handleForm, size = 'large' }: IProps) {
+export default function Search({ size = 'large' }: IProps) {
   const searchRef = useRef<HTMLInputElement>(null);
   const labelRef = useRef<HTMLDivElement>(null);
   let navigate = useNavigate();

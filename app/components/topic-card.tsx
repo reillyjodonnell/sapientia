@@ -13,6 +13,7 @@ export interface baseArticle {
   getPostUrl: Function;
   topic: string;
   id: string;
+  liked: boolean;
 }
 interface Article extends baseArticle {
   rank?: number;
@@ -31,8 +32,9 @@ export default function TopicCard({
   getPostUrl,
   topic,
   id,
+  liked,
 }: Article) {
-  const [upvote, setUpvote] = useState(false);
+  const [upvote, setUpvote] = useState(liked);
   const [downvote, setDownvote] = useState(false);
   const [count, setCount] = useState(upvotes ?? 0);
   const [validLink, setValidLink] = useState(false);
