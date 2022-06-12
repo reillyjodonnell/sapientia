@@ -45,7 +45,7 @@ export const MainContent = () => {
         </div>
         <div className=" h-full pb-py-12 flex justify-start items-center  w-full my-10">
           <div className="">
-            <button className=" cursor-pointer flex bg-accent-pink py-4 px-16 rounded-lg text-lg border-4 opacity-90 border-transparent font-bold focus-within:border-4 focus-within:border-white focus-within:opacity-100  hover:border-4 hover:border-white hover:opacity-100   ">
+            <button className=" cursor-pointer flex bg-accent-pink py-4 px-16 rounded-lg text-lg border-4 border-transparent font-bold focus-within:border-4 focus-within:border-white focus-within:opacity-100  hover:border-4 hover:border-white hover:opacity-100   ">
               <span onClick={async () => talkToTheServer()}>Take a Tour</span>
             </button>
           </div>

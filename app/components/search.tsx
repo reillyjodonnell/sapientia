@@ -58,7 +58,7 @@ export default function Search({ size = 'large' }: IProps) {
           ref={labelRef}
           className={`flex
              sm:flex items-center w-full text-left space-x-3 px-4 shadow-sm rounded-lg text-slate-800 dark:ring-0 dark:text-slate-800 dark:highlight-white/5  
-              z-50 border-4 border-white bg-white focus-within:border-4 focus-within:border-solid focus-within:border-accent-green
+              border-4 border-white bg-white focus-within:border-4 focus-within:border-solid focus-within:border-accent-green
               ${size === 'large' ? 'h-16' : size === 'medium' ? 'h-12' : 'h-8'}
               
               z-100`}

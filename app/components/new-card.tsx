@@ -225,7 +225,7 @@ export default function NewCard({
         </div>
 
         <div className="flex justify-start items-center w-full  ">
-          <div className="py-6 w-full flex justify-center items-center border-2 border-white px-4 opacity-80 hover:opacity-100 hover:bg-zinc-900 cursor-pointer rounded-xl">
+          <div className="py-6 w-full flex justify-center items-center border-2 border-white px-4  hover:opacity-100 hover:bg-zinc-900 cursor-pointer rounded-xl">
             <LinkToArticle>
               <span className="flex text-xl font-bold justify-start items-center">
                 Read Article

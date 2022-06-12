@@ -1,9 +1,10 @@
 import style from '../styles/header.css';
-import { json, LinksFunction, LoaderFunction } from '@remix-run/node';
-import { Link, useLoaderData } from '@remix-run/react';
-import { SoundContextState, useSound } from '~/contexts/sound-context';
-import { getUser } from '~/utils/session.server';
+import { LinksFunction } from '@remix-run/node';
+import { Link } from '@remix-run/react';
+import { useSound } from '~/contexts/sound-context';
 import { capitalizeFirstLetter } from '~/helper/helper';
+import { useState } from 'react';
+import { logout } from '~/utils/session.server';
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: style }];
 };
@@ -51,12 +52,12 @@ type NavElementProps = {
 
 const Github = () => {
   return (
-    <div className="cursor-pointer flex justify-center items-center  px-5 py-2 rounded-xl  hover:text-accent-pink  opacity-80 hover:opacity-100 font-semibold focus-within:text-accent-pink ">
+    <div className="cursor-pointer flex justify-center items-center  px-5 py-2 rounded-xl  hover:text-accent-pink  hover:opacity-100 font-semibold focus-within:text-accent-pink ">
       <a
         href="https://github.com/reillyjodonnell/sapientia"
         target="_blank"
         rel="noopener noreferrer"
-        className="focus-within:opacity-100 opacity-80"
+        className="focus-within:opacity-100 "
       >
         <svg
           width={'30px'}
@@ -79,6 +80,7 @@ const Github = () => {
 };
 
 const Navigation = ({ mute, toggleMute, user }: any) => {
+  const [openDropdown, setOpenDropdown] = useState(false);
   return (
     <nav className="flex justify-center items-center">
       <NavigationElement name="Topics" location="/learn" />
@@ -96,9 +98,101 @@ const Navigation = ({ mute, toggleMute, user }: any) => {
       {/* <LanguageSelector /> */}
       <div className=" cursor-pointer ml-2 sm:ml-4 ">
         {user ? (
-          <button className="px-6 py-2  flex justify-center items-center place-items-center border border-solid border-white/60  rounded-md drop-shadow-md  focus-within::bg-slate-50/5 focus-within::border-white hover:bg-slate-50/5 hover:border-white ">
-            <span>{capitalizeFirstLetter(user.username)}</span>
-          </button>
+          <div className="flex justify-center items-center">
+            <button className="px-6 py-2  flex justify-center items-center place-items-center border border-solid border-white/60  rounded-md drop-shadow-md  focus-within::bg-slate-50/5 focus-within::border-white hover:bg-slate-50/5 hover:border-white ">
+              <span>{capitalizeFirstLetter(user.username)}</span>
+            </button>
+            <div
+              onClick={() => setOpenDropdown((prev) => !prev)}
+              className="flex relative justify-center items-center ml-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                style={
+                  openDropdown ? { transform: 'rotate(180deg)' } : undefined
+                }
+                className="icon icon-tabler icon-tabler-chevron-down"
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                strokeWidth="3"
+                stroke="white"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+              {openDropdown && (
+                <div className="z-10 absolute top-12 right-0 rounded-lg border-2 p-8 bg-[#1b1b2a]  border-[#ffffff48]  shadow-normal ">
+                  <div className="px-6 flex justify-start items-center py-4 rounded-xl transition-all hover:bg-[#75757521]">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="icon icon-tabler icon-tabler-settings mr-4"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="#bebebe"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    <span>Settings</span>
+                  </div>
+                  <div className="px-6 flex justify-start items-center py-4 rounded-xl transition-all hover:bg-[#75757521]">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="icon icon-tabler icon-tabler-language mr-4"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="#bebebe"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M4 5h7" />
+                      <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+                      <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+                      <path d="M12 20l4 -9l4 9" />
+                      <path d="M19.1 18h-6.2" />
+                    </svg>
+                    <span>Languages</span>
+                  </div>
+                  <div
+                    onClick={() => window.alert('logged out')}
+                    className="px-6 flex justify-start items-center py-4 rounded-xl transition-all hover:bg-[#75757521]"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="icon icon-tabler icon-tabler-logout mr-4"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="#bebebe"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                      <path d="M7 12h14l-3 -3m0 6l3 -3" />
+                    </svg>
+                    <span>Logout</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
         ) : (
           <Link to="/login">
             <button className="px-6 py-2  flex justify-center items-center place-items-center border border-solid border-white/60  rounded-md drop-shadow-md  focus-within::bg-slate-50/5 focus-within::border-white hover:bg-slate-50/5 hover:border-white ">
@@ -126,9 +220,8 @@ export const Header = ({ user }: any) => {
   const values = useSound();
   const { mute, toggleMute }: any = values;
   return (
-    <header className="px-6 lg:px-12 py-6 flex justify-between items-center text-white header  bg-[#00000038]">
+    <header className="relative px-6 lg:px-12 py-6 flex justify-between items-center text-white header  bg-[#00000038]">
       <Logo />
-
       <Navigation user={user} mute={mute} toggleMute={toggleMute} />
     </header>
   );

@@ -18,6 +18,10 @@ module.exports = {
         'accent-error': 'var(--error)',
         'accent-error-bg': 'var(--error-bg)',
       },
+      boxShadow: {
+        normal:
+          'var(--hover) 0 54px 55px,var(--hover) 0 -12px 30px,var(--hover) 0 4px 6px,var(--hover) 0 12px 13px,var(--hover) 0 -3px 5px;',
+      },
     },
   },
   plugins: [],
